@@ -1,0 +1,44 @@
+@import "./variables.css";
+
+*, ::before, ::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+
+	font-family: "Jura", sans-serif;
+
+	color: var(--lumo);
+	background-color: var(--vesper);
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+
+	font-family: "Orbitron", sans-serif;
+	color: var(--aether);
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+
+
+.page-wrapper {
+	margin: 0 auto;
+	max-width: 1200px;
+	height: 100%;
+
+	background-color: var(--vesper);
+
+	outline: 3px dashed var(--lumo);
+}

@@ -1,0 +1,30 @@
+:root {
+	/* TYPOGRAPHY */
+	--base-font-size: 12px;
+	--fluid-modifier: 0.9;
+	--heading-modifier: 1.1;
+
+	/* Calculate a fluid rem size */
+	--fluid-rem: calc(var(--base-font-size) + var(--fluid-modifier) * 1vw);
+
+	/* calculate heading sizes */
+	--h6: calc(var(--fluid-rem) * var(--heading-modifier));
+	--h5: calc(var(--h6) * var(--heading-modifier));
+	--h4: calc(var(--h5) * var(--heading-modifier));
+	--h3: calc(var(--h4) * var(--heading-modifier));
+	--h2: calc(var(--h3) * var(--heading-modifier));
+	--h1: calc(var(--h2) * var(--heading-modifier));
+
+	/* set document font-size to fluid rem, now 1rem scales with viewport */
+	font-size: var(--fluid-rem);
+
+	/* COLOR */
+
+	/* Color Names */
+	--vesper: hsla(259, 48%, 20%, 1);
+	--solar: hsla(29, 100%, 69%, 1);
+	--aether: hsla(176, 69%, 61%, 1);
+	--lumo: hsla(180, 44%, 84%, 1);
+	--exhilarate: hsla(346, 98%, 67%, 1);
+	--kinetic: hsla(3, 98%, 67%, 1);
+}
