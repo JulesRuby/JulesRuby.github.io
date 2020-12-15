@@ -15,6 +15,8 @@
 
 5.0 PROJECTS
 
+6.0 ABOUT
+
 
 
 */
@@ -192,14 +194,12 @@ button {
 	margin-top: var(--s8);
 }
 
-.section {
+.section > * + *{
+	margin-top: var(--s7);
 }
 
 /* 5.0 PROJECTS */
 
-.projects > * + * {
-	margin-top: var(--s7);
-}
 
 .project {
 	position: relative;
@@ -282,4 +282,36 @@ button {
 	object-fit: cover;
 	filter: grayscale(80%) brightness(90%);
 	mix-blend-mode: multiply;
+}
+
+/* 6.0 ABOUT */
+
+.about-content-header {
+	line-height: var(--line-height-head);
+}
+
+.about-intro-label {
+	font-weight: 800;
+}
+
+.about-title {
+
+}
+
+.about-image-wrap {
+	display: flex;
+	/* background-color: var(--lumo); */
+	background-image: linear-gradient(
+		to bottom,
+		transparent 0%,
+		var(--lumo) 50%
+	);
+}
+
+.about-image {
+	object-fit: cover;
+}
+
+.about-info {
+	padding: var(--s5) 0;
 }
