@@ -114,7 +114,6 @@ button {
 
 .menu-list {
 	position: fixed;
-	left: 0%;
 	left: 100%;
 	top: var(--nav-ht-mobile);
 
@@ -127,9 +126,26 @@ button {
 	outline: 2px dashed yellow;
 }
 
+.menu-list.open {
+	left: 0%;
+}
+
+.menu-button {
+	transition: 200ms linear;
+}
+
+.menu-button.open {
+	background-color: var(--lumo);
+	color: var(--vesper);
+}
+
 .menu-anchor {
 	display: block;
 	padding: var(--s4);
+}
+
+.menu-button {
+	cursor: pointer;
 }
 
 /* 4.0 MAIN */
