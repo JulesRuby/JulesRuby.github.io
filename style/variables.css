@@ -18,8 +18,8 @@
 	/* set document font-size to fluid rem, now 1rem scales with viewport */
 	font-size: var(--fluid-rem);
 
-	--font-body: "Jura", sans-serif;
-	--font-head: "Orbitron", sans-serif;
+	--font-body: 'Jura', sans-serif;
+	--font-head: 'Orbitron', sans-serif;
 	--line-height-body: 1.75;
 	--line-height-head: 1.35;
 
@@ -27,18 +27,17 @@
 
 	/* Color Names */
 	--vesper: hsla(259, 48%, 20%, 1);
-	--vesper30: hsla(259, 48%, 20%, 0.30);
-	--vesper60: hsla(259, 48%, 20%, 0.60);
+	--vesper30: hsla(259, 48%, 20%, 0.3);
+	--vesper60: hsla(259, 48%, 20%, 0.6);
 	--solar: hsla(29, 100%, 69%, 1);
 	--aether: hsla(176, 69%, 61%, 1);
 	--lumo: hsla(180, 44%, 84%, 1);
 	--exhilarate: hsla(346, 98%, 67%, 1);
 	--kinetic: hsla(3, 98%, 67%, 1);
 
-
 	/* SPACING */
 	--s1: 0.25rem;
-	--s2: 0.50rem;
+	--s2: 0.5rem;
 	--s3: 0.75rem;
 	--s4: 1rem;
 	--s5: 1.5rem;
@@ -46,9 +45,6 @@
 	--s7: 2.5rem;
 	--s8: 3rem;
 
-
 	/* LAYOUT */
 	--nav-ht-mobile: 4rem;
 }
-
-

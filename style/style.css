@@ -46,6 +46,7 @@ h4,
 h5,
 h6 {
 	font-family: var(--font-head);
+	line-height: var(--line-height-head);
 	color: var(--aether);
 }
 
@@ -122,8 +123,9 @@ button {
 
 	background-color: var(--vesper60);
 
-	transition: 200ms linear;
-	outline: 2px dashed yellow;
+	transition: 100ms linear;
+	
+	/* outline: 2px dashed yellow; */
 }
 
 .menu-list.open {
@@ -131,7 +133,7 @@ button {
 }
 
 .menu-button {
-	transition: 200ms linear;
+	transition: 100ms linear;
 }
 
 .menu-button.open {
@@ -146,6 +148,38 @@ button {
 
 .menu-button {
 	cursor: pointer;
+}
+
+
+/* 3.2 HEADER CONTENT */
+
+.info {
+	margin-top: var(--s3);
+}
+
+.intro {
+	font-size: var(--h5);
+}
+
+.value {
+	/* This is an interesting way to avoid using <br> or making the spans block elements */
+	display: table;
+
+	color: var(--kinetic);
+}
+
+.contact-cta {
+	display: inline-flex;
+	align-items: center;
+
+	margin-top: var(--s6);
+	padding: var(--s2) var(--s6);
+	height: 3rem;
+
+
+	line-height: 1;
+
+	background-color: var(--exhilarate);
 }
 
 /* 4.0 MAIN */
