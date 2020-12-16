@@ -310,6 +310,7 @@ button {
 
 .about-image {
 	object-fit: cover;
+	flex-grow: 1;
 }
 
 .about-info {
