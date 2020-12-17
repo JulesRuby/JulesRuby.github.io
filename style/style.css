@@ -136,6 +136,8 @@ button {
 	background-color: var(--vesper60);
 
 	outline: 2px dotted yellow;
+
+	z-index: 10;
 }
 
 .menu-list {
