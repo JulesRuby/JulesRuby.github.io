@@ -54,6 +54,10 @@ h6 {
 	color: var(--aether);
 }
 
+p {
+	max-width: 40ch;
+}
+
 ul {
 	list-style: none;
 }
@@ -94,6 +98,7 @@ button {
 .header {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	padding: var(--s4);
 	padding-top: var(--nav-ht-mobile);
 	min-height: 80vh;
@@ -194,23 +199,23 @@ button {
 	margin-top: var(--s8);
 }
 
-.section > * + *{
+.section > * + * {
 	margin-top: var(--s7);
 }
 
 /* 5.0 PROJECTS */
 
-
 .project {
 	position: relative;
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 1fr;
 	outline: 2px dashed yellow;
 }
 
 .project-content {
 	padding: var(--s4);
 	grid-area: 1/1/-1/-1;
+	justify-self: flex-start;
 }
 
 .project-header {
@@ -220,19 +225,6 @@ button {
 .project-intro-label {
 	/* font-family: var(--font-head); */
 	font-weight: 800;
-}
-
-.project-image-wrap {
-	position: relative;
-	display: flex;
-	grid-area: 1/1/-1/-1;
-
-	/* object-fit: cover; */
-
-	background-color: var(--aether);
-	opacity: 0.4;
-
-	z-index: -1;
 }
 
 .project-description {
@@ -267,6 +259,20 @@ button {
 	padding: var(--s1) var(--s4);
 }
 
+.project-image-wrap {
+	position: relative;
+	display: flex;
+	justify-self: flex-end;
+	grid-area: 1/1/-1/-1;
+
+	/* object-fit: cover; */
+
+	background-color: var(--aether);
+	opacity: 0.4;
+
+	z-index: -1;
+}
+
 .project-image-wrap::before {
 	position: absolute;
 	content: '';
@@ -286,6 +292,26 @@ button {
 
 /* 6.0 ABOUT */
 
+/* .about {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(40ch, 1fr));
+} */
+
+.about {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.section-header {
+	width: 100%;
+}
+
+.about-content {
+	flex-basis: 35ch;
+}
+
 .about-content-header {
 	line-height: var(--line-height-head);
 }
@@ -295,17 +321,18 @@ button {
 }
 
 .about-title {
+}
 
+.about-visual {
+	flex-basis: 35ch;
 }
 
 .about-image-wrap {
 	display: flex;
-	/* background-color: var(--lumo); */
-	background-image: linear-gradient(
-		to bottom,
-		transparent 0%,
-		var(--lumo) 50%
-	);
+	margin: 0 auto;
+	max-width: 40ch;
+
+	background-image: linear-gradient(to bottom, transparent 0%, var(--lumo) 50%);
 }
 
 .about-image {
