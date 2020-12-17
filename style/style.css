@@ -402,11 +402,14 @@ button {
 
 @media only screen and (min-width: 48rem) {
 	
+	/* 9.1 QUERY - HEADER */
 	.header {
 		padding-top: unset;
-		padding-left: 20%;
+		padding-left: calc(20% + var(--s4));
 	}
 
+
+	/* 9.1 QUERY - NAVIGATION */
 	.navigation {
 		flex-direction: column;
 
@@ -430,6 +433,8 @@ button {
 		display: none;
 	}
 
+
+	/* 9.1 QUERY - MAIN */
 	.main {
 		padding-left: calc(20% + var(--s4));
 	}
