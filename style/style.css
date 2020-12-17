@@ -17,6 +17,12 @@
 
 6.0 ABOUT
 
+7.0 CONTACT
+
+8.0 FOOTER
+
+9.0 MEDIA QUERIES
+
 
 
 */
@@ -101,7 +107,15 @@ button {
 	justify-content: center;
 	padding: var(--s4);
 	padding-top: var(--nav-ht-mobile);
-	min-height: 80vh;
+	min-height: 90vh;
+
+	background: linear-gradient(
+		45deg,
+		transparent 0%,
+		transparent 40%,
+		var(--solar) 40% 60%,
+		transparent 60% 100%
+	);
 }
 
 /* 3.1 Navigation  */
@@ -120,6 +134,8 @@ button {
 	height: var(--nav-ht-mobile);
 
 	background-color: var(--vesper60);
+
+	outline: 2px dotted yellow;
 }
 
 .menu-list {
@@ -159,7 +175,25 @@ button {
 	cursor: pointer;
 }
 
+.social-list {
+	display: none;
+}
+
 /* 3.2 HEADER CONTENT */
+
+.intro-container {
+	padding: var(--s4);
+	
+	background-color: var(--vesper60);
+}
+
+/* backdrop-filter if the browser supports it */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+	.intro-container {
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+	}
+}
 
 .info {
 	margin-top: var(--s3);
@@ -266,7 +300,7 @@ button {
 	text-align: center;
 	line-height: 1;
 
-	border: .1rem solid var(--lumo);
+	border: 0.1rem solid var(--lumo);
 	border-radius: 1.2rem;
 }
 
@@ -353,4 +387,50 @@ button {
 
 .about-info {
 	padding: var(--s5) 0;
+}
+
+
+/* 7.0 CONTACT */
+
+
+
+/* 8.0 FOOTER */
+
+
+
+/* 9.0 MEDIA QUERIES */
+
+@media only screen and (min-width: 48rem) {
+	
+	.header {
+		padding-top: unset;
+		padding-left: 20%;
+	}
+
+	.navigation {
+		flex-direction: column;
+
+		width: 20%;
+		height: 100%;
+	}
+
+	.menu-list {
+		position: static;
+
+		height: auto;
+
+		background-color: transparent;
+	}
+
+	.social-list {
+		display: flex;
+	}
+
+	.menu-button {
+		display: none;
+	}
+
+	.main {
+		padding-left: calc(20% + var(--s4));
+	}
 }
