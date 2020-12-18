@@ -37,6 +37,8 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+
+	scroll-behavior: smooth;
 }
 
 body {
@@ -185,7 +187,7 @@ button {
 
 .intro-container {
 	padding: var(--s4);
-	
+
 	background-color: var(--vesper60);
 }
 
@@ -391,25 +393,18 @@ button {
 	padding: var(--s5) 0;
 }
 
-
 /* 7.0 CONTACT */
 
-
-
 /* 8.0 FOOTER */
-
-
 
 /* 9.0 MEDIA QUERIES */
 
 @media only screen and (min-width: 48rem) {
-	
 	/* 9.1 QUERY - HEADER */
 	.header {
 		padding-top: unset;
 		padding-left: calc(20% + var(--s4));
 	}
-
 
 	/* 9.1 QUERY - NAVIGATION */
 	.navigation {
@@ -434,7 +429,6 @@ button {
 	.menu-button {
 		display: none;
 	}
-
 
 	/* 9.1 QUERY - MAIN */
 	.main {
