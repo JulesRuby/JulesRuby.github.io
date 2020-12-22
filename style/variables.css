@@ -27,12 +27,14 @@
 
 	/* Color Names */
 	--vesper: hsla(259, 48%, 20%, 1);
-	--vesper30: hsla(259, 48%, 20%, 0.3);
 	--vesper60: hsla(259, 48%, 20%, 0.6);
+	--vesper30: hsla(259, 48%, 20%, 0.3);
 	--solar: hsla(29, 100%, 69%, 1);
 	--aether: hsla(176, 69%, 61%, 1);
 	--lumo: hsla(180, 44%, 84%, 1);
 	--exhilarate: hsla(346, 98%, 67%, 1);
+	--exhilarate60: hsla(346, 98%, 67%, 0.60);
+	--exhilarate30: hsla(346, 98%, 67%, 0.30);
 	--kinetic: hsla(3, 98%, 67%, 1);
 
 	/* SPACING */

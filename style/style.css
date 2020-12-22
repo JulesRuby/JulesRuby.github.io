@@ -90,6 +90,23 @@ button {
 	border: 0;
 }
 
+input,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background-color: transparent;
+	border: 0;
+	resize: none;
+}
+
+textarea:focus,
+textarea:active,
+input:focus,
+input:active {
+	outline: 0;
+}
+
 /* 2.0 UTILITY CLASSES */
 
 .flex-row {
@@ -137,7 +154,7 @@ button {
 
 	background-color: var(--vesper60);
 
-	outline: 2px dotted yellow;
+	/* outline: 2px dotted yellow; */
 
 	z-index: 10;
 }
@@ -247,7 +264,8 @@ button {
 	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	outline: 2px dashed yellow;
+	/* grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr)); */
+	/* outline: 2px dashed yellow; */
 }
 
 .project-content {
@@ -290,7 +308,7 @@ button {
 }
 
 .tech-item:first-child {
-	margin-left: calc(var(--s4) * -1);
+	/* margin-left: calc(var(--s4) * -1); */
 }
 
 .tech-item {
@@ -308,13 +326,11 @@ button {
 	border-radius: 1.2rem;
 }
 
-.project-image-wrap {
+/* .project-image-wrap {
 	position: relative;
 	display: flex;
 	justify-self: flex-end;
 	grid-area: 1/1/-1/-1;
-
-	/* object-fit: cover; */
 
 	background-color: var(--aether);
 	opacity: 0.4;
@@ -331,12 +347,66 @@ button {
 
 	background-color: var(--kinetic);
 	mix-blend-mode: screen;
+} */
+
+.project-ratio-wrap {
+	overflow: hidden;
+	display: block;
+	justify-self: flex-end;
+	align-self: center;
+	grid-area: 1/1/-1/-1;
+
+	padding: var(--s4);
+	width: 100%;
+	max-width: 40ch;
+}
+
+.project-ratio-inner {
+	position: relative;
+	display: block;
+
+	height: 0;
+	margin: auto 0;
+	padding-top: calc(100% * (3 / 4));
+
+	background-color: var(--aether);
+	opacity: 0.4;
+
+	z-index: -1;
+}
+
+.project-ratio-inner::before {
+	position: absolute;
+	content: '';
+
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	background-color: var(--kinetic);
+	mix-blend-mode: screen;
 }
 
 .project-image {
 	object-fit: cover;
 	filter: grayscale(80%) brightness(90%);
 	mix-blend-mode: multiply;
+}
+
+.project-ratio-inner > img {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;
 }
 
 /* 6.0 ABOUT */
@@ -395,6 +465,50 @@ button {
 
 /* 7.0 CONTACT */
 
+.contact {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.contact-content,
+.contact-form {
+	flex-basis: 35ch;
+}
+
+.contact-form > * + * {
+	margin-top: var(--s6);
+}
+
+.form-control {
+	position: relative;
+}
+
+.form-input {
+	display: block;
+	padding: 1.75rem var(--s2) var(--s2);
+
+	width: 100%;
+
+	border: 0.1rem solid var(--aether);
+	border-radius: 0.1rem;
+}
+
+.form-label {
+	position: absolute;
+	top: 0;
+	left: var(--s2);
+}
+
+.submit {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: var(--s2) var(--s4);
+
+	background-color: var(--exhilarate);
+}
 /* 8.0 FOOTER */
 
 /* 9.0 MEDIA QUERIES */
