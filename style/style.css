@@ -211,7 +211,7 @@ input:active {
 	/* width: var(--s6);
 	height: var(--s6); */
 
-	border: .1rem solid var(--lumo);
+	border: 0.1rem solid var(--lumo);
 	border-radius: 50%;
 }
 
@@ -223,7 +223,7 @@ input:active {
 
 	padding: var(--s2);
 	height: 100%;
-	
+
 	font-size: 1.1rem;
 	line-height: 1;
 }
@@ -340,12 +340,12 @@ input:active {
 }
 
 .tech-item {
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 
 	padding: var(--s1) var(--s4);
-	width: 10ch;
+	width: 8ch;
 
 	text-align: center;
 	line-height: 1;
