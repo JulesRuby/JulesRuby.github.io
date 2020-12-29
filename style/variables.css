@@ -27,15 +27,29 @@
 
 	/* Color Names */
 	--vesper: hsla(259, 48%, 20%, 1);
+	--vesper90: hsla(259, 48%, 20%, 0.9);
 	--vesper60: hsla(259, 48%, 20%, 0.6);
 	--vesper30: hsla(259, 48%, 20%, 0.3);
 	--solar: hsla(29, 100%, 69%, 1);
+	--solar90: hsla(29, 100%, 69%, 0.90);
+	--solar60: hsla(29, 100%, 69%, 0.60);
+	--solar30: hsla(29, 100%, 69%, 0.30);
 	--aether: hsla(176, 69%, 61%, 1);
+	--aether90: hsla(176, 69%, 61%, 0.9);
+	--aether60: hsla(176, 69%, 61%, 0.6);
+	--aether30: hsla(176, 69%, 61%, 0.3);
 	--lumo: hsla(180, 44%, 84%, 1);
+	--lumo90: hsla(180, 44%, 84%, 0.9);
+	--lumo60: hsla(180, 44%, 84%, 0.6);
+	--lumo30: hsla(180, 44%, 84%, 0.3);
 	--exhilarate: hsla(346, 98%, 67%, 1);
+	--exhilarate90: hsla(346, 98%, 67%, 0.90);
 	--exhilarate60: hsla(346, 98%, 67%, 0.60);
 	--exhilarate30: hsla(346, 98%, 67%, 0.30);
 	--kinetic: hsla(3, 98%, 67%, 1);
+	--kinetic90: hsla(3, 98%, 67%, 0.9);
+	--kinetic60: hsla(3, 98%, 67%, 0.6);
+	--kinetic30: hsla(3, 98%, 67%, 0.3);
 
 	/* SPACING */
 	--s1: 0.25rem;

@@ -128,13 +128,13 @@ input:active {
 	padding-top: var(--nav-ht-mobile);
 	min-height: 90vh;
 
-	background: linear-gradient(
+	/* background: linear-gradient(
 		45deg,
 		transparent 0%,
 		transparent 40%,
 		var(--solar) 40% 60%,
 		transparent 60% 100%
-	);
+	); */
 }
 
 /* 3.1 Navigation  */
@@ -152,7 +152,7 @@ input:active {
 	width: 100%;
 	height: var(--nav-ht-mobile);
 
-	background-color: var(--vesper60);
+	background-color: var(--vesper90);
 
 	/* outline: 2px dotted yellow; */
 
@@ -167,7 +167,7 @@ input:active {
 	width: 100%;
 	height: 100%;
 
-	background-color: var(--vesper60);
+	background-color: var(--vesper90);
 
 	transition: 100ms linear;
 
@@ -192,6 +192,12 @@ input:active {
 	padding: var(--s4);
 
 	font-family: var(--font-head);
+}
+
+.menu-anchor::before {
+	display: none;
+	/* content taken from the data-attr of the anchors */
+	content: attr(data-pseudo-content);
 }
 
 .menu-button {
@@ -294,6 +300,8 @@ input:active {
 	grid-template-columns: 1fr 1fr;
 	/* grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr)); */
 	/* outline: 2px dashed yellow; */
+
+	
 }
 
 .project-content {
@@ -331,6 +339,7 @@ input:active {
 
 .tech-list {
 	display: flex;
+	flex-wrap: wrap;
 
 	margin: var(--s3) 0;
 }
@@ -381,12 +390,15 @@ input:active {
 	overflow: hidden;
 	display: block;
 	justify-self: flex-end;
-	align-self: center;
+	/* align-self: center; */
 	grid-area: 1/1/-1/-1;
 
-	padding: var(--s4);
+	/* padding: var(--s4); */
 	width: 100%;
 	max-width: 40ch;
+
+	opacity: 1;
+	z-index: -1;
 }
 
 .project-ratio-inner {
@@ -395,7 +407,8 @@ input:active {
 
 	height: 0;
 	margin: auto 0;
-	padding-top: calc(100% * (3 / 4));
+	padding-top: calc(100% * (2 / 3));
+	/* padding-top: calc(100% * (3 / 4)); */
 
 	background-color: var(--aether);
 	opacity: 0.4;
@@ -555,6 +568,12 @@ input:active {
 
 		width: 20%;
 		height: 100%;
+
+		background-color: var(--kinetic30);
+		background-color: var(--exhilarate30);
+		background-color: var(--aether30);
+		background-color: var(--lumo30);
+		background-color: var(--solar30);
 	}
 
 	.menu-list {
@@ -563,6 +582,10 @@ input:active {
 		height: auto;
 
 		background-color: transparent;
+	}
+
+	.menu-anchor {
+		padding: var(--s4) 0;
 	}
 
 	.social-list {
@@ -576,6 +599,6 @@ input:active {
 	/* 9.1 QUERY - MAIN */
 	.main {
 		padding-left: calc(20% + var(--s4));
-		padding: var(--s4) 0 var(--s4) 20%;
+		/* padding: var(--s4) 0 var(--s4) 20%; */
 	}
 }
