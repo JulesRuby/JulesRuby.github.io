@@ -208,13 +208,11 @@ input:active {
 	left: 0%;
 }
 
-.menu-button {
-	transition: 100ms linear;
-}
-
-.menu-button.open {
-	background-color: var(--lumo);
-	color: var(--vesper);
+.menu-item:last-of-type {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: var(--s7);
 }
 
 .menu-anchor {
@@ -233,8 +231,20 @@ input:active {
 	content: attr(data-pseudo-content);
 }
 
+.resume {
+	padding: var(--s2) var(--s4);
+	border: 0.1rem solid var(--exhilarate);
+	border-radius: 0.2rem;
+}
+
 .menu-button {
 	cursor: pointer;
+	transition: 100ms linear;
+}
+
+.menu-button.open {
+	background-color: var(--lumo);
+	color: var(--vesper);
 }
 
 .social-list {
@@ -296,22 +306,49 @@ input:active {
 	background-color: var(--vesper60);
 }
 
+.hello {
+	/* line-height: 1.1; */
+}
+
+.intro,
+.name,
+.value {
+	display: table;
+	line-height: 1.2;
+}
+
+.intro {
+	margin-bottom: var(--s2);
+
+	font-size: 1rem;
+	font-family: var(--font-body);
+	color: var(--lumo);
+}
+
+
+.value {
+	font-style: italic;
+	color: var(--kinetic);
+}
+
 .info {
 	margin-top: var(--s3);
 }
 
-.intro {
-	font-size: var(--h5);
-}
-
-.value {
-	/* This is an interesting way to avoid using <br> or making the spans block elements */
-	display: table;
-
-	color: var(--kinetic);
-}
-
 .contact-cta {
+	display: inline-flex;
+	align-items: center;
+
+	margin-top: var(--s6);
+	padding: var(--s2) var(--s6);
+	height: 3rem;
+
+	line-height: 1;
+
+	background-color: var(--exhilarate);
+
+}
+.resume-cta {
 	display: inline-flex;
 	align-items: center;
 
@@ -688,6 +725,12 @@ input:active {
 
 	.menu-anchor:hover {
 		color: var(--solar);
+	}
+
+	.resume {
+		padding: var(--s1) var(--s3);
+		border: 0.1rem solid var(--exhilarate);
+		border-radius: 0.2rem;
 	}
 
 	.social-list {
