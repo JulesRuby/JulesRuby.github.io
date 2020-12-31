@@ -118,6 +118,19 @@ input:active {
 	flex-direction: column;
 }
 
+/* backdrop-filter if the browser supports it */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+	.intro-container {
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+	}
+
+	.frosted-glass {
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+	}
+}
+
 /* 3.0 HEADER */
 
 .header {
@@ -128,13 +141,13 @@ input:active {
 	padding-top: var(--nav-ht-mobile);
 	min-height: 90vh;
 
-	/* background: linear-gradient(
+	background: linear-gradient(
 		45deg,
 		transparent 0%,
 		transparent 40%,
 		var(--solar) 40% 60%,
 		transparent 60% 100%
-	); */
+	);
 }
 
 /* 3.1 Navigation  */
@@ -159,6 +172,22 @@ input:active {
 	z-index: 10;
 }
 
+/* using backdrop-filter on a parent element restricts the children elements from utilizing the same styling, so I am using a pseudo element to avoid applying the style to the parent container */
+.navigation::after {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+
+	z-index: -1;
+}
+
 .menu-list {
 	position: fixed;
 	left: 100%;
@@ -166,12 +195,13 @@ input:active {
 
 	width: 100%;
 	height: 100%;
+	height: calc((100vh - var(--nav-ht-mobile)) / 2);
 
 	background-color: var(--vesper90);
 
 	transition: 100ms linear;
 
-	/* outline: 2px dashed yellow; */
+	z-index: 10;
 }
 
 .menu-list.open {
@@ -191,7 +221,10 @@ input:active {
 	display: block;
 	padding: var(--s4);
 
-	font-family: var(--font-head);
+	font-family: var(--font-body);
+	font-weight: 700;
+	letter-spacing: 0.05rem;
+	/* text-transform: uppercase; */
 }
 
 .menu-anchor::before {
@@ -205,11 +238,32 @@ input:active {
 }
 
 .social-list {
-	display: none;
+	position: fixed;
 	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+	left: 100%;
+	/* top: var(--nav-ht-mobile); */
+	top: calc((100vh + var(--nav-ht-mobile)) / 2);
+
+	width: 100%;
+	height: 100%;
+	height: calc((100vh - var(--nav-ht-mobile)) / 2);
+
+	background-color: var(--vesper90);
+
+	transition: 100ms linear;
+
+	z-index: 10;
+}
+
+.social-list.open {
+	left: 0%;
 }
 
 .social-item {
+	overflow: hidden;
 	/* display: inline-flex; */
 	justify-content: center;
 	align-items: center;
@@ -230,7 +284,7 @@ input:active {
 	padding: var(--s2);
 	height: 100%;
 
-	font-size: 1.1rem;
+	font-size: 1rem;
 	line-height: 1;
 }
 
@@ -240,14 +294,6 @@ input:active {
 	padding: var(--s4);
 
 	background-color: var(--vesper60);
-}
-
-/* backdrop-filter if the browser supports it */
-@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-	.intro-container {
-		-webkit-backdrop-filter: blur(10px);
-		backdrop-filter: blur(10px);
-	}
 }
 
 .info {
@@ -288,20 +334,44 @@ input:active {
 	margin-top: var(--s8);
 }
 
+.section {
+	margin-left: auto; /**/
+	margin-right: auto; /**/
+	padding: 5rem 0;
+
+	max-width: 65ch; /**/
+}
+
 .section > * + * {
 	margin-top: var(--s7);
 }
 
 /* 5.0 PROJECTS */
 
+/* This is where I left off, trying to make sure all cards are the same height */
+.projects {
+	display: flex; /**/
+	flex-direction: column; /**/
+	align-items: center;
+}
+
 .project {
 	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	/* grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr)); */
+	width: 100%;
+	max-width: 60ch;
+	height: 100%;
+
+	/* margin-right: var(--s4); */
 	/* outline: 2px dashed yellow; */
 
-	
+	background-color: var(--vesperb10);
+	/* background-color: var(--solar30); */
+	/* box-shadow: 6px 6px 8px -4px var(--vesperb10); */
+
+	z-index: 1;
 }
 
 .project-content {
@@ -390,10 +460,12 @@ input:active {
 	overflow: hidden;
 	display: block;
 	justify-self: flex-end;
-	/* align-self: center; */
 	grid-area: 1/1/-1/-1;
 
-	/* padding: var(--s4); */
+	/* create space  */
+	/* margin-right: -1rem; */
+	/* padding-right: 1rem; */
+
 	width: 100%;
 	max-width: 40ch;
 
@@ -413,7 +485,7 @@ input:active {
 	background-color: var(--aether);
 	opacity: 0.4;
 
-	z-index: -1;
+	z-index: 0;
 }
 
 .project-ratio-inner::before {
@@ -432,7 +504,7 @@ input:active {
 
 .project-image {
 	object-fit: cover;
-	filter: grayscale(80%) brightness(90%);
+	filter: grayscale(90%) brightness(90%);
 	mix-blend-mode: multiply;
 }
 
@@ -469,7 +541,11 @@ input:active {
 }
 
 .about-content {
-	flex-basis: 35ch;
+	/* flex-basis: 35ch; */
+}
+
+.about-content p {
+	max-width: 60ch;
 }
 
 .about-content-header {
@@ -485,14 +561,21 @@ input:active {
 
 .about-visual {
 	flex-basis: 35ch;
+	align-self: flex-start;
 }
 
 .about-image-wrap {
 	display: flex;
 	margin: 0 auto;
-	max-width: 40ch;
+	max-width: 30ch;
 
-	background-image: linear-gradient(to bottom, transparent 0%, var(--lumo) 50%);
+	background-image: linear-gradient(
+		to bottom,
+		var(--solar) 0%,
+		var(--kinetic) 50%
+	);
+
+	border-radius: 50%;
 }
 
 .about-image {
@@ -501,7 +584,7 @@ input:active {
 }
 
 .about-info {
-	padding: var(--s5) 0;
+	padding: var(--s5) 0 0 0;
 }
 
 /* 7.0 CONTACT */
@@ -515,7 +598,8 @@ input:active {
 
 .contact-content,
 .contact-form {
-	flex-basis: 35ch;
+	flex: 1 1 60ch;
+	max-width: 60ch;
 }
 
 .contact-form > * + * {
@@ -549,7 +633,10 @@ input:active {
 	padding: var(--s2) var(--s4);
 
 	background-color: var(--exhilarate);
+
+	cursor: pointer;
 }
+
 /* 8.0 FOOTER */
 
 /* 9.0 MEDIA QUERIES */
@@ -558,22 +645,26 @@ input:active {
 	/* 9.1 QUERY - HEADER */
 	.header {
 		padding-top: unset;
-		padding-left: calc(20% + var(--s4));
-		padding: var(--s4) 0 var(--s4) 20%;
+		padding-left: calc(8rem + var(--s4));
+		/* padding: var(--s4) 0 var(--s4) 20%; */
 	}
 
 	/* 9.1 QUERY - NAVIGATION */
 	.navigation {
 		flex-direction: column;
+		padding-left: 0;
+		padding-right: 0;
 
-		width: 20%;
+		width: 9rem;
+		/* width: 20%; */
 		height: 100%;
 
 		background-color: var(--kinetic30);
 		background-color: var(--exhilarate30);
 		background-color: var(--aether30);
-		background-color: var(--lumo30);
-		background-color: var(--solar30);
+		background-color: var(--lumo10);
+		background: radial-gradient(closest-side, transparent 0%, var(--kinetic30) 100%);
+		/* background-color: var(--solar30); */
 	}
 
 	.menu-list {
@@ -584,12 +675,39 @@ input:active {
 		background-color: transparent;
 	}
 
+	.menu-list.frosted-glass,
+	.social-list.frosted-glass {
+		-webkit-backdrop-filter: blur(0px);
+		backdrop-filter: blur(0px);
+	}
+
 	.menu-anchor {
-		padding: var(--s4) 0;
+		margin-top: var(--s3);
+		padding: 0;
+	}
+
+	.menu-anchor:hover {
+		color: var(--solar);
 	}
 
 	.social-list {
+		position: static;
 		display: flex;
+		/* flex-grow: 1; */
+		justify-content: space-evenly;
+		width: 100%;
+		height: unset;
+
+		background-color: unset;
+		/* flex-direction: column; */
+	}
+
+	.social-item {
+		/* margin-right: var(--s2); */
+	}
+
+	.social-anchor:hover {
+		background-color: var(--exhilarate);
 	}
 
 	.menu-button {
@@ -598,7 +716,14 @@ input:active {
 
 	/* 9.1 QUERY - MAIN */
 	.main {
-		padding-left: calc(20% + var(--s4));
+		/* padding-left: calc(8rem + var(--s4)); */
+		padding-left: 10rem;
+		padding-right: 1rem;;
 		/* padding: var(--s4) 0 var(--s4) 20%; */
+	}
+
+	/* 9.2 QUERY - PROJECTS */
+	.project {
+		/* margin-right: var(--s4); */
 	}
 }
