@@ -460,14 +460,15 @@ input:active {
 	justify-content: center;
 	align-items: center;
 
-	padding: var(--s1) var(--s4);
-	width: 8ch;
+	margin-right: var(--s3);
+	/* padding: var(--s1) var(--s4); */
+	/* width: 8ch; */
 
 	text-align: center;
 	line-height: 1;
 
-	border: 0.1rem solid var(--lumo);
-	border-radius: 1.2rem;
+	/* border: 0.1rem solid var(--lumo); */
+	/* border-radius: 1.2rem; */
 }
 
 /* .project-image-wrap {
