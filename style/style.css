@@ -141,13 +141,13 @@ input:active {
 	padding-top: var(--nav-ht-mobile);
 	min-height: 90vh;
 
-	background: linear-gradient(
+	/* background: linear-gradient(
 		45deg,
 		transparent 0%,
 		transparent 40%,
 		var(--solar) 40% 60%,
 		transparent 60% 100%
-	);
+	); */
 }
 
 /* 3.1 Navigation  */
@@ -325,7 +325,6 @@ input:active {
 	color: var(--lumo);
 }
 
-
 .value {
 	font-style: italic;
 	color: var(--kinetic);
@@ -346,7 +345,6 @@ input:active {
 	line-height: 1;
 
 	background-color: var(--exhilarate);
-
 }
 .resume-cta {
 	display: inline-flex;
@@ -435,7 +433,7 @@ input:active {
 }
 
 .proof-link {
-	margin-right: var(--s2);
+	/* margin-right: var(--s2); */
 	padding: var(--s3);
 
 	font-size: var(--h2);
@@ -701,8 +699,15 @@ input:active {
 		background-color: var(--exhilarate30);
 		background-color: var(--aether30);
 		background-color: var(--lumo10);
-		background: radial-gradient(closest-side, transparent 0%, var(--kinetic30) 100%);
-		/* background-color: var(--solar30); */
+		background-color: var(--vesper60);
+		background: linear-gradient(
+			to bottom,
+			var(--kinetic30) 0%,
+			var(--vesper60) 30%,
+			var(--vesper60) 70%,
+			var(--kinetic30) 100%
+		);
+		/* linear-gradient(to top, var(--kinetic60) 0%, var(--vesper60) 50%); */
 	}
 
 	.menu-list {
@@ -762,7 +767,7 @@ input:active {
 	.main {
 		/* padding-left: calc(8rem + var(--s4)); */
 		padding-left: 10rem;
-		padding-right: 1rem;;
+		padding-right: 1rem;
 		/* padding: var(--s4) 0 var(--s4) 20%; */
 	}
 
