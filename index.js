@@ -19,12 +19,11 @@ const [topNav, hamburger, menu, socialMenu, body] = [
 	$('body'),
 ];
 
-hamburger.addEventListener('click', () => {
-	// Toggle open class to each element on hamburger click
+const toggleMenu = () => {
 	[hamburger, menu, socialMenu, body].forEach((el) =>
 		el.classList.toggle('open')
 	);
-});
+};
 
 // Create a boolean that trips when scrollHide is no longer needed
 // Evaluated on pageload, and then again later when resizing occurs
@@ -73,6 +72,9 @@ const scrollHide = () => {
 	}
 };
 
+// Invoke initial functions
 toggleListener();
 
+// Set initial listeners
 window.addEventListener('resize', toggleListener);
+hamburger.addEventListener('click', toggleMenu);
