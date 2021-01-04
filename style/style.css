@@ -158,6 +158,7 @@ input:active {
 	top: 0;
 
 	display: flex;
+	visibility: visible;
 	justify-content: space-between;
 	align-items: center;
 	padding: var(--s4);
@@ -166,10 +167,23 @@ input:active {
 	height: var(--nav-ht-mobile);
 
 	background-color: var(--vesper90);
+	box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
+	opacity: 1;
 
-	/* outline: 2px dotted yellow; */
+	transform: translateY(0);
+	transition: visibility 0ms linear 0ms, opacity 200ms ease 5ms,
+		transform 200ms ease 5ms;
 
 	z-index: 10;
+}
+
+.navigation.scroll-hide {
+	visibility: hidden;
+	opacity: 0;
+	transform: translateY(-100%);
+
+	transition: visibility 0ms linear 205ms, opacity 200ms ease 0ms,
+		transform 200ms ease 0ms;
 }
 
 /* using backdrop-filter on a parent element restricts the children elements from utilizing the same styling, so I am using a pseudo element to avoid applying the style to the parent container */
@@ -202,6 +216,10 @@ input:active {
 	transition: 100ms linear;
 
 	z-index: 10;
+}
+
+body.open {
+	overflow: hidden;
 }
 
 .menu-list.open {
