@@ -314,11 +314,16 @@
 				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, hic. Earum odit magni mollitia, repudiandae suscipit deleniti quo dolorum at.</p>
 			</div> -->
 
-			<form class="contact-form" action="#" autocomplete="off">
+			<form class="contact-form" name="contact-form" method="POST" action="#" autocomplete="off" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="last-name">
 
 				<div class="form-control">
 					<input id="name" class="form-input" type="text" name="name">
 					<label for="name" class="form-label">Name:</label>
+				</div>
+
+				<div class="forn-control">
+					<input id="last-name" class="form-input" type="text" name="last-name">
+					<label for="last-name" class="form-label">Last Name:</label>
 				</div>
 				
 				<div class="form-control">
@@ -335,6 +340,8 @@
 					<textarea id="message" class="form-input" name="message" rows="5" cols="30"></textarea>
 					<label for="message" class="form-label">Message:</label>
 				</div>
+
+				<div class="recaptcha" data-netlify-recaptcha="true"></div>
 
 				<input class="submit" type="submit" value="Submit">
 				

@@ -693,6 +693,13 @@ body.open {
 	left: var(--s2);
 }
 
+.forn-control {
+	position: relative;
+	visibility: hidden;
+
+	z-index: -1;
+}
+
 .submit {
 	display: block;
 	margin-left: auto;
