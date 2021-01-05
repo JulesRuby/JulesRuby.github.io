@@ -249,6 +249,10 @@ body.open {
 	content: attr(data-pseudo-content);
 }
 
+.menu-anchor.active {
+	color: var(--solar);
+}
+
 .resume {
 	padding: var(--s2) var(--s4);
 	border: 0.1rem solid var(--exhilarate);
@@ -314,6 +318,8 @@ body.open {
 
 	font-size: 1rem;
 	line-height: 1;
+
+	transition: all 200ms ease;
 }
 
 /* 3.2 HEADER CONTENT */
@@ -421,6 +427,13 @@ body.open {
 	/* outline: 2px dashed yellow; */
 
 	background-color: var(--vesperb10);
+	/* background: linear-gradient(
+			to bottom,
+			var(--kinetic30) 0%,
+			var(--vesper60) 30%,
+			var(--vesper60) 70%,
+			var(--kinetic30) 100%
+		); */
 	/* background-color: var(--solar30); */
 	/* box-shadow: 6px 6px 8px -4px var(--vesperb10); */
 
