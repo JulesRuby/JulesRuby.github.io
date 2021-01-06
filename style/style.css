@@ -701,6 +701,11 @@ body.open {
 	z-index: -1;
 }
 
+.recaptcha {
+	display: flex;
+	justify-content: center;
+}
+
 .submit {
 	display: block;
 	margin-left: auto;
