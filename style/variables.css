@@ -68,4 +68,15 @@
 
 	/* LAYOUT */
 	--nav-ht-mobile: 4rem;
+
+	/* SCANLINES */
+	--line-color: hsla(0, 100%, 0%, 0.2);
+
+	--scanlines: repeating-linear-gradient(
+		0deg,
+		var(--line-color),
+		var(--line-color) 1px,
+		transparent 1px,
+		transparent 2px
+	);
 }
