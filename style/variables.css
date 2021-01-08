@@ -73,7 +73,7 @@
 	--nav-ht-mobile: 4rem;
 
 	/* SCANLINES */
-	--line-color: hsla(0, 100%, 0%, 0.2);
+	--line-color: hsla(0, 100%, 0%, 0.15);
 
 	--scanlines: repeating-linear-gradient(
 		0deg,
@@ -82,6 +82,7 @@
 		transparent 1px,
 		transparent 2px
 	);
+
 
 	/* TEXT GLOW */
 	/* --glow-color: ; */
