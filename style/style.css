@@ -22,6 +22,12 @@
 8.0 FOOTER
 
 9.0 MEDIA QUERIES
+	9.1 QUERY - UTILITY
+	9.2 QUERY - HEADER
+	9.3 QUERY - NAVIGATION
+	9.4 QUERY - PROJECTS
+	9.5 QUERY - ABOUT
+	9.6 QUERY - CONTACT
 
 
 
@@ -49,6 +55,10 @@ body {
 	color: var(--lumo);
 
 	background-color: var(--vesper);
+}
+
+body.text-glow {
+	--blur: 2px;
 }
 
 h1,
@@ -137,16 +147,22 @@ input:active {
 }
 
 /* applies text glow to element, color can be shifted by reassigning --glow-color, otherwise it falls back to inheriting the element's text color */
-.glow {
+.text-glow {
 	--glow-color: ;
-	text-shadow: 0 0 3px var(--glow-color, inherit);
+	--x: 0px;
+	--y: 0px;
+	--blur: 3px;
+	/* text-shadow: 0 0 3px var(--glow-color, inherit); */
+	text-shadow: var(--x, inherit) var(--y, inherit) var(--blur, inherit)
+		var(--glow-color, inherit);
 }
 
 /* Use this class to apply a sort of CRT scanline effect, get you redbulls out... not too many though, because they bad for you. */
 /* I made so it so I can also reassign the color of the scanlines in this by declaring the --line-color property, otherwise it defaults to the variable */
+
 .scanlines::after {
 	position: absolute;
-	content: "";
+	content: '';
 	display: none;
 
 	top: 0;
@@ -162,23 +178,23 @@ input:active {
 	pointer-events: none; /* allows users to interact with underlapping elements */
 }
 
+/* test out slewed alpha channels for text glitch */
+.alpha-shift:hover {
+	/* text-shadow: 2px 2px 1px var(--aether), -2px -2px 1px var(--kinetic); */
+	animation: alphaShudder 1.6s infinite;
+}
+
 /* 3.0 HEADER */
 
 .header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
 	padding: var(--s4);
 	padding-top: var(--nav-ht-mobile);
-	min-height: 90vh;
 
-	/* background: linear-gradient(
-		45deg,
-		transparent 0%,
-		transparent 40%,
-		var(--solar) 40% 60%,
-		transparent 60% 100%
-	); */
+	min-height: 90vh;
 }
 
 /* 3.1 Navigation  */
@@ -206,6 +222,8 @@ input:active {
 		transform 200ms ease 5ms;
 
 	z-index: 10;
+
+	--blur: 2px;
 }
 
 .navigation.scroll-hide {
@@ -265,6 +283,7 @@ body.open {
 }
 
 .menu-anchor {
+	position: relative;
 	display: block;
 	padding: var(--s4);
 
@@ -274,14 +293,46 @@ body.open {
 	/* text-transform: uppercase; */
 }
 
-.menu-anchor::before {
-	display: none;
-	/* content taken from the data-attr of the anchors */
-	content: attr(data-pseudo-content);
+.menu-anchor.active {
+	color: var(--aether);
+	text-shadow: 0px 0px 11px var(--aether60), -2px -2px 11px var(--aether60),
+		2px 2px 11px var(--aether60);
+
+		/* background-color: var(--kinetic30); */
 }
 
-.menu-anchor.active {
-	color: var(--solar);
+.menu-anchor.active::before,
+.menu-anchor.active::after {
+	position: absolute;
+	content: '';
+
+	top: 0;
+	left: 0;
+
+	margin-left: 0.5rem;
+
+	width: 10%;
+	height: 100%;
+
+	border: 0.25rem solid var(--aether);
+	border-right: 0;
+
+	/* box-shadow: -5px 0px 5px 1px var(--aether30); */
+}
+
+.menu-anchor.active::after {
+	left: unset;
+	right: 0;
+
+	margin-left: unset;
+	margin-right: 0.5rem;
+
+	border: 0.25rem solid var(--aether);
+	border-left: 0.25rem;
+
+	background-color: rgba(0, 0, 0, 0.0);
+
+	/* box-shadow: 5px 0px 5px 1px var(--aether30); */
 }
 
 .resume {
@@ -307,7 +358,8 @@ body.open {
 	align-items: center;
 
 	left: 100%;
-	/* top: var(--nav-ht-mobile); */
+	/* Might switch this up after I fix the menu button */
+	/* Run a calc to make the social list line up below the menu */
 	top: calc((100vh + var(--nav-ht-mobile)) / 2);
 
 	width: 100%;
@@ -330,9 +382,6 @@ body.open {
 	/* display: inline-flex; */
 	justify-content: center;
 	align-items: center;
-
-	/* width: var(--s6);
-	height: var(--s6); */
 
 	border: 0.1rem solid var(--lumo);
 	border-radius: 50%;
@@ -390,6 +439,7 @@ body.open {
 }
 
 .contact-cta {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
 
@@ -400,7 +450,26 @@ body.open {
 	line-height: 1;
 
 	background-color: var(--exhilarate);
+
+	/* Basic idea for button shape, which is currently not an IDEAL shape, but I have the foundation laid for the general idea, I can fix the shape later */
+	background: linear-gradient(
+			45deg,
+			transparent 0rem,
+			transparent 1rem,
+			var(--exhilarate) 1rem,
+			var(--exhilarate) 50%,
+			transparent 50%
+		),
+		linear-gradient(
+			225deg,
+			transparent 0rem,
+			transparent 1rem,
+			var(--exhilarate) 1rem,
+			var(--exhilarate) 50%,
+			transparent 50%
+		);
 }
+
 .resume-cta {
 	display: inline-flex;
 	align-items: center;
@@ -818,20 +887,18 @@ body.open {
 
 @media only screen and (min-width: 48rem) {
 	/* 9.1 QUERY - UTILITY */
-
 	/* scanlines appear when viewport isn't mobile */
 	.scanlines::after {
 		display: unset;
 	}
 
-	/* 9.1 QUERY - HEADER */
+	/* 9.2 QUERY - HEADER */
 	.header {
 		padding-top: unset;
 		padding-left: calc(8rem + var(--s4));
-		/* padding: var(--s4) 0 var(--s4) 20%; */
 	}
 
-	/* 9.1 QUERY - NAVIGATION */
+	/* 9.3 QUERY - NAVIGATION */
 	.navigation {
 		flex-direction: column;
 		padding-left: 0;
@@ -856,23 +923,6 @@ body.open {
 		/* linear-gradient(to top, var(--kinetic60) 0%, var(--vesper60) 50%); */
 	}
 
-	/* .navigation::after {
-		position: absolute;
-		content: "";
-
-		top: 0;
-		left: 0;
-
-		width: 100%;
-		height: 100%;
-
-		background: var(--scanlines);
-
-		z-index: 10;
-
-		pointer-events: none;
-	} */
-
 	.menu-list {
 		position: static;
 
@@ -893,7 +943,8 @@ body.open {
 	}
 
 	.menu-anchor:hover {
-		color: var(--solar);
+		/* color: var(--solar); */
+		animation: alphaShudder 1.6s infinite;
 	}
 
 	.resume {
@@ -926,7 +977,7 @@ body.open {
 		display: none;
 	}
 
-	/* 9.1 QUERY - MAIN */
+	/* 9.4 QUERY - MAIN */
 	.main {
 		/* padding-left: calc(8rem + var(--s4)); */
 		padding-left: 10rem;
@@ -934,7 +985,7 @@ body.open {
 		/* padding: var(--s4) 0 var(--s4) 20%; */
 	}
 
-	/* 9.2 QUERY - PROJECTS */
+	/* 9.5 QUERY - PROJECTS */
 	.project {
 		/* margin-right: var(--s4); */
 	}
@@ -943,7 +994,7 @@ body.open {
 	.project-title {
 		position: relative;
 		display: table;
-	
+
 		background-color: var(--vesper90);
 
 		z-index: 2;
@@ -959,17 +1010,106 @@ body.open {
 		z-index: 1; /**/
 	}
 
-
 	.project-ratio-inner {
-		transition:all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	}
 
-	.project-ratio-inner:hover, 
-	.project-ratio-inner:hover .project-ratio-inner::before, 
+	.project-ratio-inner:hover,
+	.project-ratio-inner:hover .project-ratio-inner::before,
 	.project-ratio-inner:hover .project-image {
 		filter: grayscale(0%) brightness(100%);
 		mix-blend-mode: normal;
 		background-color: unset;
 		opacity: 0.8;
+	}
+}
+
+/* 2.0 KEYFRAME ANIMATIONS */
+
+/*  I yoinked the pixel values for this color shift effect for now, bacause I don't want to do the calculations to replicate the consistent framerate of this, I'll revisit it later when I have time */
+@keyframes alphaShudder {
+	0% {
+		text-shadow: 0.4389924193300864px 0 1px var(--aether60),
+			-0.4389924193300864px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	5% {
+		text-shadow: 2.7928974010788217px 0 1px var(--aether60),
+			-2.7928974010788217px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	10% {
+		text-shadow: 0.02956275843481219px 0 1px var(--aether60),
+			-0.02956275843481219px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	15% {
+		text-shadow: 0.40218538552878136px 0 1px var(--aether60),
+			-0.40218538552878136px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	20% {
+		text-shadow: 3.4794037899852017px 0 1px var(--aether60),
+			-3.4794037899852017px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	25% {
+		text-shadow: 1.6125630401149584px 0 1px var(--aether60),
+			-1.6125630401149584px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	30% {
+		text-shadow: 0.7015590085143956px 0 1px var(--aether60),
+			-0.7015590085143956px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	35% {
+		text-shadow: 3.896914047650351px 0 1px var(--aether60),
+			-3.896914047650351px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	40% {
+		text-shadow: 3.870905614848819px 0 1px var(--aether60),
+			-3.870905614848819px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	45% {
+		text-shadow: 2.231056963361899px 0 1px var(--aether60),
+			-2.231056963361899px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	50% {
+		text-shadow: 0.08084290417898504px 0 1px var(--aether60),
+			-0.08084290417898504px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	55% {
+		text-shadow: 2.3758461067427543px 0 1px var(--aether60),
+			-2.3758461067427543px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	60% {
+		text-shadow: 2.202193051050636px 0 1px var(--aether60),
+			-2.202193051050636px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	65% {
+		text-shadow: 2.8638780614874975px 0 1px var(--aether60),
+			-2.8638780614874975px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	70% {
+		text-shadow: 0.48874025155497314px 0 1px var(--aether60),
+			-0.48874025155497314px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	75% {
+		text-shadow: 1.8948491305757957px 0 1px var(--aether60),
+			-1.8948491305757957px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	80% {
+		text-shadow: 0.0833037308038857px 0 1px var(--aether60),
+			-0.0833037308038857px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	85% {
+		text-shadow: 0.09769827255241735px 0 1px var(--aether60),
+			-0.09769827255241735px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	90% {
+		text-shadow: 3.443339761481782px 0 1px var(--aether60),
+			-3.443339761481782px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	95% {
+		text-shadow: 2.1841838852799786px 0 1px var(--aether60),
+			-2.1841838852799786px 0 1px var(--kinetic60), 0 0 3px;
+	}
+	100% {
+		text-shadow: 2.6208764473832513px 0 1px var(--aether60),
+			-2.6208764473832513px 0 1px var(--kinetic60), 0 0 3px;
 	}
 }

@@ -56,6 +56,9 @@
 	--kinetic30: hsla(3, 98%, 67%, 0.3);
 	--kinetic30: hsla(3, 98%, 67%, 0.1);
 
+	--exhilarate-op: hsla(346, 98%, 67%, 1);
+	--exhilarate-op: hsla(346, 98%, 67%, var(--opacity, 1));
+
 	/* SPACING */
 	--s1: 0.25rem;
 	--s2: 0.5rem;
@@ -79,4 +82,12 @@
 		transparent 1px,
 		transparent 2px
 	);
+
+	/* TEXT GLOW */
+	/* --glow-color: ; */
+	--x: 0px;
+	--y: 0px;
+	--blur: 3px;
+	--text-glow: var(--x, inherit) var(--y, inherit) var(--blur, inherit)
+	var(--glow-color, inherit);
 }
