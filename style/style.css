@@ -321,7 +321,8 @@ body.open {
 	border: 0.25rem solid var(--aether);
 	border-right: 0;
 
-	/* box-shadow: -5px 0px 5px 1px var(--aether30); */
+	/* box-shadow: -5px px 5px 1px var(--aether30),
+	 inset -5px 0px 5px 1px var(--aether30); */
 	/* z-index: -1; */
 }
 
@@ -337,13 +338,19 @@ body.open {
 
 	background-color: rgba(0, 0, 0, 0);
 
-	/* box-shadow: 5px 0px 5px 1px var(--aether30); */
+	/* box-shadow: 5px 0px 5px 1px var(--aether30),
+		inset 5px 0px 5px 1px var(--aether30); */
 }
 
 .resume {
+	/* overflow: hidden; */
+	/* position: relative; */
 	padding: var(--s2) var(--s4);
-	border: 0.1rem solid var(--exhilarate);
+	border: 0.1rem solid var(--aether);
 	border-radius: 0.2rem;
+	box-shadow: inset 0px 0px 3px 1px var(--aether), 0px 0px 3px 1px var(--aether);
+
+	transition: all 150ms ease;
 }
 
 .menu-button {
@@ -413,10 +420,6 @@ body.open {
 	padding: var(--s4);
 
 	background-color: var(--vesper60);
-}
-
-.hello {
-	/* line-height: 1.1; */
 }
 
 .intro,
@@ -545,12 +548,23 @@ body.open {
 	z-index: 0;
 }
 
-
 .project-content {
-	padding: var(--s4);
+	position: relative;
 	grid-area: 1/1/-1/-1;
 	justify-self: flex-start;
+
+	padding: var(--s4);
+
+	z-index: 1;
 }
+
+.project-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 1rem 0 0 0;
+}
+
 
 .project-header {
 	line-height: var(--line-height-head);
@@ -571,21 +585,14 @@ body.open {
 	padding: var(--s5) 0;
 }
 
-.project-content {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	padding: 1rem 0 0 0;
-}
-
 .project-content > * {
 	padding-left: var(--s4);
 }
 
 .project-description {
 	padding: var(--s1);
-	margin: var(--s4) 0;
-	margin-left: var(--s3);
+	margin: var(--s4) var(--s3);
+	/* margin-left: var(--s3); */
 
 	background-color: var(--vesper60);
 }
@@ -963,8 +970,16 @@ body.open {
 
 	.resume {
 		padding: var(--s1) var(--s3);
-		border: 0.1rem solid var(--exhilarate);
 		border-radius: 0.2rem;
+	}
+
+	.resume:hover,
+	.resume:focus {
+		border: 0.1rem solid var(--aether);
+		box-shadow: inset 0px 0px 5px 2px var(--aether),
+			0px 0px 5px 2px var(--aether);
+
+		animation: alphaBoxShudder 1.6s infinite, alphaShudder 1.6s infinite;
 	}
 
 	.social-list {
@@ -983,8 +998,8 @@ body.open {
 		animation: alphaBoxShudder 1.6s infinite;
 	}
 
-	.social-anchor:hover, 
-	.social-anchor:focus  {
+	.social-anchor:hover,
+	.social-anchor:focus {
 		/* background-color: var(--exhilarate); */
 		animation: alphaShudder 1.6s infinite;
 	}
@@ -1002,9 +1017,21 @@ body.open {
 	}
 
 	/* 9.5 QUERY - PROJECTS */
-	.project {
-		/* margin-right: var(--s4); */
+
+	/* allows cursor hover effects to occur through the content container, preventing it from totally obscuring the project image */
+	.project-content {
+		pointer-events: none;
 	}
+
+	/* I now add back all cursor events to just the text and button elements, so they may be interacted with */
+	.project-intro-label,
+	.project-title,
+	.project-description p,
+	.proof-link,
+	.tech-item {
+		pointer-events: all;
+	}
+
 
 	.project-intro-label,
 	.project-title {
@@ -1012,19 +1039,11 @@ body.open {
 		display: table;
 
 		background-color: var(--vesper90);
-
-		z-index: 2;
 	}
 
-	.project-description {
-		position: relative; /**/
-		z-index: 2; /**/
-	}
-
-	.project-ratio-wrap {
-		position: relative; /**/
-		z-index: 1; /**/
-	}
+	.project-description p {
+		pointer-events: all;
+	} 
 
 	.project-ratio-inner {
 		transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1044,7 +1063,6 @@ body.open {
 		/* put a soft glow animaton here later */
 		text-shadow: 0 0 10px var(--exhilarate);
 	}
-
 }
 
 /* 10.0 KEYFRAME ANIMATIONS */

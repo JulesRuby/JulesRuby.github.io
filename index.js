@@ -43,6 +43,12 @@ const updateHistory = (hash) => {
 	}, 1000);
 };
 
+// Will work on this debounce later for recalculating intersections on resize
+// const debounce = (fn, time) => {
+// 	clearTimeout(fn.timeout);
+// 	fn.timeout = setTimeOut(fn(), time);
+// };
+
 const findThreshold = (element) => {
 	// console.log(element.id, (window.innerHeight / 2 / element.clientHeight));
 	// console.log(element.clientHeight);
@@ -86,46 +92,6 @@ const intersectCallback = (entries) => {
 		}
 	});
 };
-// const intersectCallback = (entry) => {
-
-// 		console.log(
-// 			// entry.target,
-// 			// entry.target.clientHeight,
-// 			entry.target.id,
-// 			entry.isIntersecting,
-// 			entry.intersectionRatio
-// 		);
-
-// 		const urlHash = `#${entry.target.id}`;
-
-// 		const menuAnchor = $(`a[href="${urlHash}"]`);
-// 		console.log(menuAnchor)
-
-// 		if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-// 			menuAnchor.classList.add('active');
-// 			console.log('BOOSH:', menuAnchor.id)
-// 			updateHistory(urlHash);
-// 		} else {
-// 			menuAnchor.classList.remove('active');
-// 		}
-
-// };
-
-// create an intersection observer that accepts the callback containing the elements I wish to observe, which are children to the <body>
-// const observeSection = new IntersectionObserver(intersectCallback, {
-// 	// root: document.querySelector('body'),
-// 	root: null,
-// 	threshold: 0,
-// });
-
-// const observeSection = new IntersectionObserver(intersectCallback, options());
-
-// loop through sections to observe and apply my observer to each of them
-// observeSection.observe(section)
-// sections.forEach((section) => {
-// 	// findThreshold(section);
-// 	observeSection.observe(section);
-// });
 
 sections.forEach((section) => {
 	const sectionObserver = new IntersectionObserver(
@@ -134,6 +100,17 @@ sections.forEach((section) => {
 	);
 	sectionObserver.observe(section);
 });
+
+// Try to use this for a debounce fn
+// const calculateIntersections = () => {
+// 	sections.forEach((section) => {
+// 		const sectionObserver = new IntersectionObserver(
+// 			intersectCallback,
+// 			options(section)
+// 		);
+// 		sectionObserver.observe(section);
+// 	});
+// };
 
 // Create a boolean that trips when scrollHide is no longer needed
 // Evaluated on pageload, and then again later when resizing occurs
