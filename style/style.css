@@ -983,7 +983,7 @@ body.open {
 	}
 
 	.social-list {
-		position: static;
+		/* position: static; */
 		display: flex;
 		/* flex-grow: 1; */
 		justify-content: space-evenly;
