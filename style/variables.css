@@ -83,12 +83,21 @@
 		transparent 2px
 	);
 
+	/* MONITOR LIGHT BLEED */
+	--light-bleed: linear-gradient(
+		to bottom,
+		var(--kinetic30) 0%,
+		var(--vesper60) 30%,
+		var(--vesper60) 70%,
+		var(--kinetic30) 100%
+	);
 
 	/* TEXT GLOW */
-	/* --glow-color: ; */
+	--glow-color: ;
+	
 	--x: 0px;
 	--y: 0px;
 	--blur: 3px;
-	--text-glow: var(--x, inherit) var(--y, inherit) var(--blur, inherit)
-	var(--glow-color, inherit);
+	--text-glow: var(--glow-color, inherit) var(--x, 0) var(--y, 0)
+		var(--blur, 3px);
 }

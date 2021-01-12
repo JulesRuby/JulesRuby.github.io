@@ -35,7 +35,7 @@
 
 /* 1.0 RESETS / GLOBAL SELECTORS */
 
-@import './variables.css';
+/* @import './variables.css'; */
 
 *,
 ::before,
@@ -55,10 +55,8 @@ body {
 	color: var(--lumo);
 
 	background-color: var(--vesper);
-}
 
-body.text-glow {
-	--blur: 2px;
+	text-shadow: var(--text-glow);
 }
 
 h1,
@@ -147,15 +145,14 @@ input:active {
 }
 
 /* applies text glow to element, color can be shifted by reassigning --glow-color, otherwise it falls back to inheriting the element's text color */
-.text-glow {
+/* .text-glow {
 	--glow-color: ;
 	--x: 0px;
 	--y: 0px;
 	--blur: 3px;
-	/* text-shadow: 0 0 3px var(--glow-color, inherit); */
 	text-shadow: var(--x, inherit) var(--y, inherit) var(--blur, inherit)
 		var(--glow-color, inherit);
-}
+} */
 
 /* Use this class to apply a sort of CRT scanline effect, get you redbulls out... not too many though, because they bad for you. */
 /* I made so it so I can also reassign the color of the scanlines in this by declaring the --line-color property, otherwise it defaults to the variable */
@@ -226,8 +223,6 @@ input:active {
 		transform 200ms ease 5ms;
 
 	z-index: 10;
-
-	--blur: 2px;
 }
 
 .navigation.scroll-hide {
@@ -308,38 +303,33 @@ body.open {
 .menu-anchor.active::before,
 .menu-anchor.active::after {
 	position: absolute;
+	display: inline-flex;
 	content: '';
 
 	top: 0;
 	left: 0;
+	bottom: 0;
 
 	margin-left: 0.5rem;
 
 	width: 10%;
 	height: 100%;
 
-	border: 0.25rem solid var(--aether);
-	border-right: 0;
-
-	/* box-shadow: -5px px 5px 1px var(--aether30),
-	 inset -5px 0px 5px 1px var(--aether30); */
-	/* z-index: -1; */
+	border: 0.3rem solid var(--aether);
+	border-right: unset;
+	filter: drop-shadow(0 0 5px var(--aether));
 }
 
 .menu-anchor.active::after {
+	content: '';
 	left: unset;
 	right: 0;
 
 	margin-left: unset;
 	margin-right: 0.5rem;
 
-	border: 0.25rem solid var(--aether);
-	border-left: 0.25rem;
-
-	background-color: rgba(0, 0, 0, 0);
-
-	/* box-shadow: 5px 0px 5px 1px var(--aether30),
-		inset 5px 0px 5px 1px var(--aether30); */
+	border: 0.3rem solid var(--aether);
+	border-left: unset;
 }
 
 .resume {
@@ -565,7 +555,6 @@ body.open {
 	padding: 1rem 0 0 0;
 }
 
-
 .project-header {
 	line-height: var(--line-height-head);
 }
@@ -718,6 +707,11 @@ body.open {
 	opacity: 1;
 }
 
+/* .project-ratio-wrap:hover,
+.project-ratio-wrap:focus {
+	animation: alphaBoxShudder 1.6s infinite;
+} */
+
 .project-ratio-inner {
 	position: relative;
 	display: block;
@@ -727,7 +721,9 @@ body.open {
 	padding-top: calc(100% * (2 / 3));
 	/* padding-top: calc(100% * (3 / 4)); */
 
-	background-color: var(--aether);
+	/* background-color: var(--aether); */
+	background: var(--light-bleed);
+	/* mix-blend-mode: screen; */
 	opacity: 0.4;
 
 	z-index: 0;
@@ -743,14 +739,19 @@ body.open {
 	width: 100%;
 	height: 100%;
 
-	background-color: var(--kinetic);
-	mix-blend-mode: screen;
+	/* background-color: var(--kinetic); */
+	background: var(--light-bleed);
+	/* background-blend-mode: screen; */
+	/* mix-blend-mode: screen; */
 }
 
 .project-image {
 	object-fit: cover;
 	filter: grayscale(90%) brightness(90%);
 	mix-blend-mode: multiply;
+	mix-blend-mode: overlay;
+	mix-blend-mode: screen;
+	mix-blend-mode: luminosity;
 }
 
 .project-ratio-inner > img {
@@ -932,7 +933,7 @@ body.open {
 			var(--kinetic30) 0%,
 			var(--vesper60) 30%,
 			var(--vesper60) 70%,
-			var(--kinetic30) 100%
+			var(--kinetic30) 100% 
 		);
 		/* linear-gradient(to top, var(--kinetic60) 0%, var(--vesper60) 50%); */
 		/* z-index: 0; */
@@ -1032,7 +1033,6 @@ body.open {
 		pointer-events: all;
 	}
 
-
 	.project-intro-label,
 	.project-title {
 		position: relative;
@@ -1043,25 +1043,49 @@ body.open {
 
 	.project-description p {
 		pointer-events: all;
-	} 
+	}
+
+	.project-ratio-wrap {
+		/* background: var(--light-bleed); */
+	}
 
 	.project-ratio-inner {
 		transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		/* background: var(--light-bleed); */
 	}
 
 	.project-ratio-inner:hover,
 	.project-ratio-inner:hover .project-ratio-inner::before,
 	.project-ratio-inner:hover .project-image {
-		filter: grayscale(0%) brightness(100%);
+		filter: grayscale(0%) brightness(90%);
 		mix-blend-mode: normal;
+		mix-blend-mode: hard-light; /* tinkering with this */
 		background-color: unset;
+		/* background: var(--light-bleed); */
 		opacity: 0.8;
+	}
+
+	.project-ratio-wrap:hover {
+		box-shadow: 0px 0px 20px 1px var(--aether30),
+			inset 0px 0px 20px 5px var(--aether30);
 	}
 
 	.proof-link:hover,
 	.proof-link:focus {
 		/* put a soft glow animaton here later */
 		text-shadow: 0 0 10px var(--exhilarate);
+	}
+
+	/* 9.7 QUERY - CONTACT */
+
+	.form-control {
+		background: var(--light-bleed);
+	}
+
+	.form-input:focus + .form-label {
+		color: var(--solar);
+		text-shadow: var(--text-glow);
+		z-index: 11;
 	}
 }
 
