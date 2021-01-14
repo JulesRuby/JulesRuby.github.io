@@ -935,6 +935,30 @@ body.open {
 	transition: inherit;
 }
 
+.form-input:required + .form-label::after,
+.form-input:required:valid + .form-label::after {
+	content: '*';
+	margin-left: var(--s2);
+
+	font-size: var(--h5);
+	color: var(--kinetic);
+	line-height: 1;
+}
+
+.form-input:required:valid + .form-label::after {
+	content: '\2714';
+
+	font-size: 1rem;
+	color: var(--aether);
+}
+
+.form-input:invalid + .form-label::after {
+	content: 'Please enter a valid whatever';
+
+	font-size: 0.65rem;
+	line-height: unset;
+}
+
 .forn-control {
 	position: relative;
 	visibility: hidden;
