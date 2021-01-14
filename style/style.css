@@ -789,7 +789,31 @@ body.open {
 }
 
 .section-header {
+	display: flex;
 	width: 100%;
+}
+
+.section-header::after {
+	content: '';
+	display: inline-flex;
+
+	margin-left: var(--s4);
+	width: 100%;
+
+	background: 
+		repeating-linear-gradient(
+			135deg,
+			transparent,
+			transparent 1.5rem,
+			var(--vesper) 1.5rem,
+			var(--vesper) 3rem
+		),
+		linear-gradient(to right, var(--kinetic), var(--kinetic30) 100%);
+}
+
+.section-header h2 {
+	display: inline-block;
+	line-height: 1;
 }
 
 .about-content {
@@ -846,8 +870,6 @@ body.open {
 	margin-top: var(--s5);
 }
 
-.my-tech-item {
-}
 /* 7.0 CONTACT */
 
 .contact {
