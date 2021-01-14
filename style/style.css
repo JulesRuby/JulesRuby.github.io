@@ -144,16 +144,6 @@ input:active {
 	}
 }
 
-/* applies text glow to element, color can be shifted by reassigning --glow-color, otherwise it falls back to inheriting the element's text color */
-/* .text-glow {
-	--glow-color: ;
-	--x: 0px;
-	--y: 0px;
-	--blur: 3px;
-	text-shadow: var(--x, inherit) var(--y, inherit) var(--blur, inherit)
-		var(--glow-color, inherit);
-} */
-
 /* Use this class to apply a sort of CRT scanline effect, get you redbulls out... not too many though, because they bad for you. */
 /* I made so it so I can also reassign the color of the scanlines in this by declaring the --line-color property, otherwise it defaults to the variable */
 
@@ -170,12 +160,10 @@ input:active {
 
 	background: var(--scanlines);
 
-	/* z-index: 20; */
-
 	pointer-events: none; /* allows users to interact with underlapping elements */
 }
 
-/* test out slewed alpha channels for text glitch */
+/* test out skewed alpha channels for text glitch */
 .alpha-shift:hover {
 	animation: alphaShudder 1.6s infinite;
 }
@@ -889,6 +877,26 @@ body.open {
 	max-width: 60ch;
 }
 
+.contact-content * + *{
+	margin-top: var(--s5);
+}
+
+.contact-content p {
+	max-width: 60ch;
+}
+
+.contact-social {
+	display: inline-block;
+	margin-left: var(--s2);
+	padding: var(--s1) var(--s3);
+
+	color: var(--lumo);
+	line-height: unset;
+
+	border: 0.1rem solid var(--aether);
+	border-radius: 0.2rem;
+}
+
 .contact-form > * + * {
 	margin-top: var(--s6);
 }
@@ -921,12 +929,6 @@ body.open {
 	z-index: 11;
 }
 
-.form-input:invalid {
-	border: 0.1rem solid var(--kinetic);
-	outline: 0;
-	box-shadow: none;
-}
-
 .form-label {
 	position: absolute;
 	top: 0;
@@ -935,9 +937,9 @@ body.open {
 	transition: inherit;
 }
 
-.form-input:required + .form-label::after,
-.form-input:required:valid + .form-label::after {
-	content: '*';
+
+.form-input[data-touched] + label::after {
+	content: var(--touch-validation);
 	margin-left: var(--s2);
 
 	font-size: var(--h5);
@@ -945,15 +947,25 @@ body.open {
 	line-height: 1;
 }
 
-.form-input:required:valid + .form-label::after {
-	content: '\2714';
+.form-input:required + label::after {
+	--touch-validation: "*";
+}
+
+.form-input[data-touched="true"]:invalid {
+	border: 0.1rem solid var(--kinetic);
+	outline: 0;
+	box-shadow: none;
+}
+
+.form-input[data-touched="true"]:valid + label::after {
+	--touch-validation: '\2714';
 
 	font-size: 1rem;
 	color: var(--aether);
 }
 
-.form-input:invalid + .form-label::after {
-	content: 'Please enter a valid whatever';
+.form-input[data-touched="true"]:invalid + label::after {
+	--touch-validation: 'Please enter a valid whatever';
 
 	font-size: 0.65rem;
 	line-height: unset;
@@ -1041,14 +1053,8 @@ body.open {
 		padding-right: 0;
 
 		width: 9rem;
-		/* width: 20%; */
 		height: 100%;
 
-		background-color: var(--kinetic30);
-		background-color: var(--exhilarate30);
-		background-color: var(--aether30);
-		background-color: var(--lumo10);
-		background-color: var(--vesper60);
 		background: linear-gradient(
 			to bottom,
 			var(--kinetic30) 0%,
@@ -1056,8 +1062,6 @@ body.open {
 			var(--vesper60) 70%,
 			var(--kinetic30) 100%
 		);
-		/* linear-gradient(to top, var(--kinetic60) 0%, var(--vesper60) 50%); */
-		/* z-index: 0; */
 	}
 
 	.menu-list,
@@ -1105,15 +1109,13 @@ body.open {
 	}
 
 	.social-list {
-		/* position: static; */
 		display: flex;
-		/* flex-grow: 1; */
 		justify-content: space-evenly;
+
 		width: 100%;
 		height: unset;
 
 		background-color: unset;
-		/* flex-direction: column; */
 	}
 
 	.social-item:hover {
@@ -1122,13 +1124,35 @@ body.open {
 
 	.social-anchor:hover,
 	.social-anchor:focus {
-		/* background-color: var(--exhilarate); */
 		animation: alphaShudder 1.6s infinite;
 	}
 
 	.menu-button {
 		display: none;
 	}
+
+	.contact-cta {
+		position: relative;
+		transition: all 100ms ease;
+	}
+
+	.contact-cta:hover {
+		background-color: var(--vesper60);
+		box-shadow: inset 0px 0px 3px 2px var(--exhilarate),
+		0px 0px 5px 2px var(--exhilarate);
+		animation: alphaShudder 1.6s infinite;
+	}
+
+	/* .contact-cta:hover::after {
+		position: absolute;
+		right: 0;
+
+		width: var(--s6);
+		content: '=D';
+		margin: auto;
+
+		transform: rotate(90deg);
+	} */
 
 	/* 9.4 QUERY - MAIN */
 	.main {
@@ -1202,6 +1226,12 @@ body.open {
 	}
 
 	/* 9.7 QUERY - CONTACT */
+
+	.contact-social:hover,
+	.contact-social:focus {
+
+		animation: alphaShudder 1.6s infinite, alphaBoxShudder 1.6s infinite;
+	}
 
 	.form-control {
 		background: var(--light-bleed);

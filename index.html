@@ -71,7 +71,7 @@
 						<h3 class="project-title">Pokeboi</h3>
 					</header>
 
-					<div class="project-description">
+						<div class="project-description">
 						<p>
 							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia facilis molestias laboriosam incidunt, omnis esse atque quam ipsum quisquam iusto totam doloribus libero consequuntur voluptatibus.
 						</p>
@@ -333,16 +333,12 @@
 					<h3 class="about-title">Don't touch my Hi-Chew!</h3>
 				</header>
 
-				<!-- <p class="about-info">
-					J.R. Muri is a Calgary based front end developer fascinated with creating aesthetically pleasing, fun user interfaces and experiences. Always looking to learn and apply new skills for innovative solutions! 
-				</p> -->
-
 				<p class="about-info">
 					Hi there, I'm a front-end developer based in Calgary, Alberta! I enjoy creating fun and appealing UI, and applying new technologies for innovative solutions.
 				</p>
 
 				<p class="about-info">
-					Much of my personal work and designs are heavily influenced by my love of video games, photography and color. Which are a few pf the ways I enjoy bombarding my retinas with photons, when I'm not coding, or vigilantly glaring directly at the sun... it might fool everyone else, but not me!
+					Much of my personal work and designs are heavily influenced by my love of video games, photography and color. Which are a few of the ways I enjoy bombarding my retinas with photons, when I'm not coding or vigilantly glaring directly at the sun... it might fool everyone else, but not me!
 				</p>
 
 				<p class="about-info">
@@ -371,34 +367,50 @@
 				<h2>Contact</h2>
 			</header>
 
-			<!-- <div class="contact-content">
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, hic. Earum odit magni mollitia, repudiandae suscipit deleniti quo dolorum at.</p>
-			</div> -->
+			<div class="contact-content">
+				<p>
+					Well well well, you've made it this far and haven't navigated away from my page to create a Synthwave playlist.  
+				</p>
+
+				<p>
+					You either have poor taste in music or great taste in, uh... me. If you would like to get in touch with me, I have provided an easy and secure contact form below.
+				</p>
+				
+				<p>
+					Also feel free to stalk my professional social media, my links are in the navigation menu, or riiiiight-
+					<br>
+					here ------> <a class="contact-social" href="github.io/JulesRuby">GitHub</a> <a class="contact-social" href="linkedin.com/in/jr-muri-ui">LinkedIn</a>
+				</p>
+
+				<p>
+
+				</p>
+			</div>
 
 			<form class="contact-form" name="contact-form" method="POST" action="#" autocomplete="off" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="last-name" netlify>
 
 				<div class="form-control scanlines">
-					<input id="name" class="form-input" type="text" name="name" required>
+					<input id="name" class="form-input" type="text" name="name"  data-touched="false" required>
 					<label for="name" class="form-label">Name :</label>
 				</div>
 
 				<div class="forn-control scanlines">
-					<input id="last-name" class="form-input" type="text" name="last-name">
+					<input id="last-name" class="form-input" type="text" name="last-name" data-touched="false">
 					<label for="last-name" class="form-label">Last Name :</label>
 				</div>
 				
 				<div class="form-control scanlines">
-					<input id="email" class="form-input" type="email" name="email" required>
+					<input id="email" class="form-input" type="email" name="email" data-touched="false" required>
 					<label for="email" class="form-label">E-mail :</label>
 				</div>
 				
 				<div class="form-control scanlines">
-					<input id="phone" class="form-input" type="tel" name="phone">
-					<label for="phone" class="form-label">Phone # :</label>
+					<input id="phone" class="form-input" type="tel" name="phone" data-touched="false">
+					<label for="phone" class="form-label" >Phone # :</label>
 				</div>
 				
 				<div class="form-control scanlines">
-					<textarea id="message" class="form-input" name="message" rows="5" cols="30" required></textarea>
+					<textarea id="message" class="form-input" name="message" rows="5" cols="30" data-touched="false" required></textarea>
 					<label for="message" class="form-label">Message :</label>
 				</div>
 

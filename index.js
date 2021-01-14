@@ -21,7 +21,9 @@ const [topNav, hamburger, menu, socialMenu, body] = [
 
 // store page section for intersection observer
 const sections = $$(['.header', '.section']);
-// const sections = $$('.section');
+
+// Store form inputs for touched status
+const formInputs = $$('.form-input');
 
 // Store the menu anchors to apply menu close onClick and active link styling
 const menuLinks = $$('.menu-anchor');
@@ -32,6 +34,9 @@ const toggleMenu = () => {
 		el.classList.toggle('open')
 	);
 };
+
+//Function to set input as touched
+const setTouched = (event) => (event.target.dataset.touched = 'true');
 
 // function to update the history pushstate, but set a timeout to avoid this being triggered through rapid user scrolling
 const updateHistory = (hash) => {
@@ -154,7 +159,7 @@ const scrollHide = () => {
 	}
 
 	// If user has scrolled beyond X pixels upward, reveal nav
-	if (parseFloat(scrollDistance) <= -200) {
+	if (parseFloat(scrollDistance) <= -100) {
 		topNav.classList.remove('scroll-hide');
 		previousScrollPosition = currentScrollPosition;
 	}
@@ -164,5 +169,6 @@ const scrollHide = () => {
 toggleMobileListeners();
 
 // Set initial listeners
+formInputs.forEach((input) => input.addEventListener('blur', setTouched));
 window.addEventListener('resize', toggleMobileListeners);
 hamburger.addEventListener('click', toggleMenu);
