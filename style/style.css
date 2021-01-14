@@ -447,7 +447,13 @@ body.open {
 
 	line-height: 1;
 
-	background-color: var(--exhilarate);
+	background-color: var(--exhilarate30);
+
+	border: 0.1rem solid var(--exhilarate);
+	border-radius: 0.2rem;
+
+	box-shadow: inset 0px 0px 3px 1px var(--exhilarate),
+		0px 0px 3px 1px var(--exhilarate);
 
 	/* Basic idea for button shape, which is currently not an IDEAL shape, but I have the foundation laid for the general idea, I can fix the shape later */
 	/* background: linear-gradient(
@@ -833,6 +839,15 @@ body.open {
 	padding: var(--s5) 0 0 0;
 }
 
+.my-tech-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+	margin-top: var(--s5);
+}
+
+.my-tech-item {
+}
 /* 7.0 CONTACT */
 
 .contact {
@@ -942,20 +957,20 @@ body.open {
 
 		background: repeating-linear-gradient(
 				to bottom,
-			rgba(0, 0, 0, 0),
-			rgba(0, 0, 0, 0) 4.85rem,
+				rgba(0, 0, 0, 0),
+				rgba(0, 0, 0, 0) 4.85rem,
 				rgba(0, 200, 180, 0.1) 5rem,
-			rgba(0, 0, 0, 0) 5.15rem
+				rgba(0, 0, 0, 0) 5.15rem
 			),
 			repeating-linear-gradient(
 				to right,
-			rgba(0, 0, 0, 0),
-			rgba(0, 0, 0, 0) 4.85rem,
+				rgba(0, 0, 0, 0),
+				rgba(0, 0, 0, 0) 4.85rem,
 				rgba(0, 200, 180, 0.1) 5rem,
-			rgba(0, 0, 0, 0) 5.15rem
+				rgba(0, 0, 0, 0) 5.15rem
 			);
 
-			z-index: -1;
+		z-index: -1;
 	}
 	/* 9.1 QUERY - UTILITY */
 	/* scanlines appear when viewport isn't mobile */
