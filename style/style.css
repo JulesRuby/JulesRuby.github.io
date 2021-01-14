@@ -800,8 +800,7 @@ body.open {
 	margin-left: var(--s4);
 	width: 100%;
 
-	background: 
-		repeating-linear-gradient(
+	background: repeating-linear-gradient(
 			135deg,
 			transparent,
 			transparent 1.5rem,
@@ -844,6 +843,7 @@ body.open {
 	display: flex;
 	margin: 0 auto;
 	max-width: 30ch;
+	max-height: 30ch;
 
 	background-image: linear-gradient(
 		to bottom,
