@@ -802,12 +802,14 @@ body.open {
 
 	background: repeating-linear-gradient(
 			135deg,
-			transparent,
+			var(--kinetic),
+			var(--kinetic) 1.5rem,
 			transparent 1.5rem,
-			var(--vesper) 1.5rem,
-			var(--vesper) 3rem
-		),
-		linear-gradient(to right, var(--kinetic), var(--kinetic30) 100%);
+			transparent 3rem
+		);
+
+		mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0));
+		-webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0));
 }
 
 .section-header h2 {
