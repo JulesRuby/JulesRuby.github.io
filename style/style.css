@@ -494,7 +494,8 @@ body.open {
 }
 
 .section > * + * {
-	margin-top: var(--s7);
+	margin-top: var(--s8);
+	margin-top: var(--s8);margin-top: 4rem;
 }
 
 /* 5.0 PROJECTS */
@@ -510,24 +511,8 @@ body.open {
 	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	/* grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr)); */
 	width: 100%;
 	max-width: 60ch;
-	/* height: 100%; */
-
-	/* margin-right: var(--s4); */
-	/* outline: 2px dashed yellow; */
-
-	/* background-color: var(--vesperb10); */
-	/* background: linear-gradient(
-			to bottom,
-			var(--kinetic30) 0%,
-			var(--vesper60) 30%,
-			var(--vesper60) 70%,
-			var(--kinetic30) 100%
-		); */
-	/* background-color: var(--solar30); */
-	/* box-shadow: 6px 6px 8px -4px var(--vesperb10); */
 
 	z-index: 0;
 }
@@ -605,10 +590,10 @@ body.open {
 	justify-content: inherit;
 	align-items: inherit;
 
-	width: 2.5rem;
-	height: 2.5rem;
+	width: 2rem;
+	height: 2rem;
 
-	font-size: 2rem;
+	font-size: 1.75rem;
 	line-height: 1;
 }
 
@@ -832,6 +817,7 @@ body.open {
 }
 
 .about-image-wrap {
+	overflow: hidden;
 	display: flex;
 	margin: 0 auto;
 	max-width: 30ch;
@@ -945,6 +931,13 @@ body.open {
 	font-size: var(--h5);
 	color: var(--kinetic);
 	line-height: 1;
+}
+
+.form-input[data-touched][type="tel"] + label::after {
+	--touch-validation: '(optional)';
+
+	font-size: 0.65rem;
+	color: unset;
 }
 
 .form-input:required + label::after {
