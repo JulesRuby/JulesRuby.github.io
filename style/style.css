@@ -495,7 +495,8 @@ body.open {
 
 .section > * + * {
 	margin-top: var(--s8);
-	margin-top: var(--s8);margin-top: 4rem;
+	margin-top: var(--s8);
+	margin-top: 4rem;
 }
 
 /* 5.0 PROJECTS */
@@ -674,6 +675,7 @@ body.open {
 	overflow: hidden;
 	display: block;
 	justify-self: flex-end;
+	align-self: flex-start;
 	grid-area: 1/1/-1/-1;
 
 	/* create space  */
@@ -776,15 +778,19 @@ body.open {
 	height: 2ch;
 
 	background: repeating-linear-gradient(
-			135deg,
-			var(--kinetic) 0,
-			var(--kinetic) 1.5rem,
-			transparent 1.5rem,
-			transparent 3rem
-		);
+		135deg,
+		var(--kinetic) 0,
+		var(--kinetic) 1.5rem,
+		transparent 1.5rem,
+		transparent 3rem
+	);
 
-		mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0));
-		-webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0));
+	mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0));
+	-webkit-mask-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 1) 0%,
+		rgba(0, 0, 0, 0)
+	);
 }
 
 .section-header h2 {
@@ -863,7 +869,7 @@ body.open {
 	max-width: 60ch;
 }
 
-.contact-content * + *{
+.contact-content * + * {
 	margin-top: var(--s5);
 }
 
@@ -923,7 +929,6 @@ body.open {
 	transition: inherit;
 }
 
-
 .form-input[data-touched] + label::after {
 	content: var(--touch-validation);
 	margin-left: var(--s2);
@@ -933,7 +938,7 @@ body.open {
 	line-height: 1;
 }
 
-.form-input[data-touched][type="tel"] + label::after {
+.form-input[data-touched][type='tel'] + label::after {
 	--touch-validation: '(optional)';
 
 	font-size: 0.65rem;
@@ -941,23 +946,23 @@ body.open {
 }
 
 .form-input:required + label::after {
-	--touch-validation: "*";
+	--touch-validation: '*';
 }
 
-.form-input[data-touched="true"]:invalid {
+.form-input[data-touched='true']:invalid {
 	border: 0.1rem solid var(--kinetic);
 	outline: 0;
 	box-shadow: none;
 }
 
-.form-input[data-touched="true"]:valid + label::after {
+.form-input[data-touched='true']:valid + label::after {
 	--touch-validation: '\2714';
 
 	font-size: 1rem;
 	color: var(--aether);
 }
 
-.form-input[data-touched="true"]:invalid + label::after {
+.form-input[data-touched='true']:invalid + label::after {
 	--touch-validation: 'Please enter a valid whatever';
 
 	font-size: 0.65rem;
@@ -1132,7 +1137,7 @@ body.open {
 	.contact-cta:hover {
 		background-color: var(--vesper60);
 		box-shadow: inset 0px 0px 3px 2px var(--exhilarate),
-		0px 0px 5px 2px var(--exhilarate);
+			0px 0px 5px 2px var(--exhilarate);
 		animation: alphaShudder 1.6s infinite;
 	}
 
@@ -1222,7 +1227,6 @@ body.open {
 
 	.contact-social:hover,
 	.contact-social:focus {
-
 		animation: alphaShudder 1.6s infinite, alphaBoxShudder 1.6s infinite;
 	}
 
