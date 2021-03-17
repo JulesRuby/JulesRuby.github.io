@@ -2,7 +2,7 @@
 /* ////////////////////////////////TABLE OF CONTENTS//////////////////////////////// */
 /* --------------------------------------------------------------------------------- */
 
-/* 
+/*
 
 1.0 RESETS / GLOBAL SELECTORS
 
@@ -597,16 +597,13 @@ body.open {
 	font-size: 1.75rem;
 	line-height: 1;
 }
-
+/*
 .tech-list {
 	display: flex;
 	flex-wrap: wrap;
+	flex-direction: row-reverse;
 
 	margin: var(--s3) 0;
-}
-
-.tech-item:first-child {
-	/* margin-left: calc(var(--s4) * -1); */
 }
 
 .tech-item {
@@ -614,38 +611,62 @@ body.open {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
+	align-content: center;
 
 	margin-right: var(--s3);
-	/* padding: var(--s1) var(--s4); */
-	/* width: 8ch; */
 
 	text-align: center;
-	line-height: 1;
-
-	/* border: 0.1rem solid var(--lumo); */
-	/* border-radius: 1.2rem; */
-}
+	line-height: 1.25;
+} */
 
 .tech-bottom {
 	grid-column: 1/-1;
+
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row-reverse;
+	justify-content: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	flex-direction: row-reverse;
 	align-self: flex-end;
 
+	margin: var(--s3) 0;
 	margin-bottom: 0;
 	padding: var(--s3);
 
 	background-color: var(--vesper60);
 }
 
-.tech-bottom .tech-item {
-	margin: 0;
-	padding: var(--s1) var(--s3);
+.tech-bottom > * {
+	margin-right: 0.5rem;
 }
 
-.tech-bottom .tech-item:not(:last-child)::after {
-	position: absolute;
-	content: '/';
+.tech-bottom .tech-item {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
 
+	text-align: center;
+	line-height: 1.25;
+
+	margin-top: 0.5rem;
+	padding: var(--s1) var(--s3);
+
+	/* width: 12ch; */
+}
+
+.tech-bottom .tech-item::after {
+	position: absolute;
+	content: '';
+
+	top: 0;
 	right: 0;
+	bottom: 0;
+	left: 0;
+
+	background-color: var(--kinetic30);
+	transform: skew(-20deg);
 }
 
 /* .project-image-wrap {
@@ -854,6 +875,25 @@ body.open {
 	margin-top: var(--s5);
 }
 
+.my-tech-item {
+	display: inline-flex;
+	align-content: center;
+}
+
+.my-tech-item::before {
+	content: '';
+	display: inline-block;
+	margin-right: .5rem;
+
+	height: 100%;
+	width: 1rem;
+
+	background-image: url(../assets/images/marker-arrow-rounded.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+}
+
 /* 7.0 CONTACT */
 
 .contact {
@@ -890,7 +930,7 @@ body.open {
 }
 
 .contact-form > * + * {
-	margin-top: var(--s6);
+	margin-top: var(--s4);
 }
 
 .form-control {
@@ -922,6 +962,7 @@ body.open {
 }
 
 .form-label {
+	overflow: hidden;
 	position: absolute;
 	top: 0;
 	left: var(--s2);
@@ -929,12 +970,43 @@ body.open {
 	transition: inherit;
 }
 
+.input-error,
+.form-error {
+	overflow: hidden;
+	display: inline-flex;
+	visibility: hidden;
+	opacity: 0;
+
+	max-width: 0;
+
+	font-size: 0.65rem;
+	color: var(--kinetic);
+
+	transform: translateX(100%);
+
+	transition: visibility 0ms linear 0ms, opacity 200ms ease 50ms,
+		transform 200ms ease 50ms, max-width 200ms ease-in-out 10ms;
+}
+
+.form-error {
+	display: flex;
+	justify-content: center;
+}
+
+.input-error.active {
+	visibility: visible;
+	opacity: 1;
+	max-width: 100%;
+
+	transform: translateX(0%);
+}
+
 .form-input[data-touched] + label::after {
 	content: var(--touch-validation);
 	margin-left: var(--s2);
 
 	font-size: var(--h5);
-	color: var(--kinetic);
+	color: var(--solar);
 	line-height: 1;
 }
 
@@ -945,29 +1017,61 @@ body.open {
 	color: unset;
 }
 
-.form-input:required + label::after {
+/* .form-input:required + label::after {
+	--touch-validation: '*';
+} */
+
+.form-input[data-touched]:not([type='tel']) + label::after {
 	--touch-validation: '*';
 }
 
-.form-input[data-touched='true']:invalid {
+/*  OLD  */
+/* .form-input[data-touched='true']:invalid {
+	border: 0.1rem solid var(--kinetic);
+	outline: 0;
+	box-shadow: none;
+} */
+
+/* NEW */
+.form-input[data-touched='true'][data-valid='false'] {
 	border: 0.1rem solid var(--kinetic);
 	outline: 0;
 	box-shadow: none;
 }
 
-.form-input[data-touched='true']:valid + label::after {
+/* OLD */
+/* .form-input[data-touched='true']:valid + label::after {
+	--touch-validation: '\2714';
+
+	font-size: 1rem;
+	color: var(--aether);
+} */
+
+/* NEW */
+.form-input[data-touched='true'][data-valid='false'] + label::after {
+	--touch-validation: '\2716';
+
+	font-size: 1rem;
+	color: var(--kinetic);
+}
+
+.form-input[data-touched='true'][data-valid='true'] + label::after {
 	--touch-validation: '\2714';
 
 	font-size: 1rem;
 	color: var(--aether);
 }
 
-.form-input[data-touched='true']:invalid + label::after {
+/* .form-input[data-touched='true']:invalid + label::after {
 	--touch-validation: 'Please enter a valid whatever';
 
 	font-size: 0.65rem;
 	line-height: unset;
-}
+} */
+
+/* .form-input[data-touched='true'][data-touched='false'] + label > .input-error {
+	display: inline;
+} */
 
 .forn-control {
 	position: relative;
@@ -982,16 +1086,48 @@ body.open {
 	justify-content: center;
 }
 
+.contact-form.invalid .form-error{
+	visibility: visible;
+	opacity: 1;
+	max-width: 100%;
+	transform: translateX(0%);
+}
+
+
 .submit {
+	position: relative;
 	display: block;
+	/* display: inline-flex; */
 	margin-left: auto;
 	margin-right: auto;
-	padding: var(--s2) var(--s4);
+	padding: var(--s3) var(--s6);
 
 	background-color: var(--exhilarate);
+	background-color: var(--exhilarate30);
+
+	border: 0.1rem solid var(--exhilarate);
+	border-radius: 0.2rem;
+
+	box-shadow: inset 0px 0px 3px 1px var(--exhilarate),
+		0px 0px 3px 1px var(--exhilarate);
 
 	cursor: pointer;
 }
+
+
+
+
+/* .contact-cta {
+		position: relative;
+		transition: all 100ms ease;
+	}
+
+	.contact-cta:hover {
+		background-color: var(--vesper60);
+		box-shadow: inset 0px 0px 3px 2px var(--exhilarate),
+			0px 0px 5px 2px var(--exhilarate);
+		animation: alphaShudder 1.6s infinite;
+	} */
 
 /* 8.0 FOOTER */
 
@@ -1011,7 +1147,7 @@ body.open {
 
 		width: 100%;
 		height: 100%;
-		/* 
+		/*
 		hsla(0, 0, 0, 0);
 		*/
 
@@ -1233,6 +1369,19 @@ body.open {
 	.form-control {
 		background: var(--light-bleed);
 	}
+
+	.submit {
+		transition: all 100ms ease;
+	}
+
+	.submit:hover {
+		background-color: var(--vesper60);
+		box-shadow: inset 0px 0px 3px 2px var(--exhilarate),
+			0px 0px 5px 2px var(--exhilarate);
+		animation: alphaShudder 1.6s infinite;
+	}
+
+
 }
 
 /* 10.0 KEYFRAME ANIMATIONS */

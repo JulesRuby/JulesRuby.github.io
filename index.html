@@ -10,9 +10,9 @@
 	<!-- <link rel="stylesheet" href="./style/variables.css"> -->
 	<link rel="stylesheet" href="./style/style.css">
 	<link rel="stylesheet" href="./style/variables.css">
-	
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-	<title>J.R. Muri | Web Developer | Portfolio</title>
+	<title>J.R. Muri | Developer | Portfolio</title>
 </head>
 <body>
 	<header id="home" class="header">
@@ -21,7 +21,7 @@
 				JRMURI.DEV
 				<img src="" alt="" class="logo-link">
 			</a>
-			
+
 			<ul class="menu-list frosted-glass">
 				<li class="menu-item"><a href="#projects" class="menu-anchor" data-pseudo-content="Projects">Projects</a></li>
 				<li class="menu-item"><a href="#about" class="menu-anchor" data-pseudo-content="About">About</a></li>
@@ -34,7 +34,7 @@
 				<li class="social-item"><a href="https://github.com/JulesRuby" class="social-anchor"><i class="fab fa-github"></i></a></li>
 				<li class="social-item"><a href="#" class="social-anchor"><i class="fas fa-envelope"></i></a></li>
 			</ul>
-			
+
 			<button class="menu-button">Menu</button>
 		</nav>
 
@@ -42,14 +42,14 @@
 			<h1 class="hello">
 				<span class="intro">Hello there, my name is </span>
 				<span class="name">J.R. Muri </span>
-				<span class="value">Software Developer</span>
+				<span class="value">Developer</span>
 			</h1>
 			<p class="info">I'm a developer based in Calgary, Alberta currently specializing in front end development, and creating fun and intuitive UI.</p>
 
 			<a href="#contact" class="contact-cta">Contact Me</a>
 		</div>
 
-		
+
 	</header>
 
 	<main class="main">
@@ -275,12 +275,14 @@
 				</p>
 
 				<ul class="my-tech-list">
-					<li class="my-tech-item">HTML</li>
-					<li class="my-tech-item">CSS</li>
+					<li class="my-tech-item">HTML5</li>
+					<li class="my-tech-item">CSS3</li>
 					<li class="my-tech-item">JavaScript</li>
 					<li class="my-tech-item">Vue</li>
 					<li class="my-tech-item">Node.js</li>
 					<li class="my-tech-item">Express</li>
+					<li class="my-tech-item">MongoDB</li>
+					<li class="my-tech-item">Mongoose</li>
 				</ul>
 			</div>
 
@@ -298,13 +300,13 @@
 
 			<div class="contact-content">
 				<p>
-					Well well well, you've made it this far and haven't navigated away from my page to create a Synthwave playlist.  
+					Well well well, you've made it this far and haven't navigated away from my page to create a Synthwave playlist.
 				</p>
 
 				<p>
 					You either have poor taste in music or great taste in, uh... me. If you would like to get in touch with me, I have provided an easy and secure contact form below.
 				</p>
-				
+
 				<p>
 					Also feel free to stalk my professional social media, my links are in the navigation menu, or riiiiight-
 					<br>
@@ -316,37 +318,39 @@
 				</p>
 			</div>
 
-			<form class="contact-form" name="contact-form" method="POST" action="#" autocomplete="off" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="last-name" netlify>
+			<form id="contact-form" class="contact-form" name="contact-form" method="POST" action="#" autocomplete="off" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="last-name" netlify>
 
 				<div class="form-control scanlines">
-					<input id="name" class="form-input" type="text" name="name"  data-touched="false" required>
-					<label for="name" class="form-label">Name :</label>
+					<input id="name" class="form-input" type="text" name="name"  data-touched="false" data-valid="false">
+					<label name="label" for="name" class="form-label">Name : <span class="input-error"></span></label>
 				</div>
 
 				<div class="forn-control scanlines">
-					<input id="last-name" class="form-input" type="text" name="last-name" data-touched="false">
-					<label for="last-name" class="form-label">Last Name :</label>
+					<input id="last-name" class="form-input" type="text" name="last-name" data-touched="false" data-valid="false">
+					<label for="last-name" class="form-label">Last Name : <span class="input-error"></span></label>
 				</div>
-				
+
 				<div class="form-control scanlines">
-					<input id="email" class="form-input" type="email" name="email" data-touched="false" required>
-					<label for="email" class="form-label">E-mail :</label>
+					<input id="email" class="form-input" type="email" name="email" data-touched="false" data-valid="false">
+					<label for="email" class="form-label">E-mail : <span class="input-error"></span></label>
 				</div>
-				
+
 				<div class="form-control scanlines">
-					<input id="phone" class="form-input" type="tel" name="phone" data-touched="false">
-					<label for="phone" class="form-label" >Phone # :</label>
+					<input id="phone" class="form-input" type="tel" name="phone" data-touched="false" data-valid="false">
+					<label for="phone" class="form-label" >Phone # : <span class="input-error"></span></label>
 				</div>
-				
+
 				<div class="form-control scanlines">
-					<textarea id="message" class="form-input" name="message" rows="5" cols="30" data-touched="false" required></textarea>
-					<label for="message" class="form-label">Message :</label>
+					<textarea id="message" class="form-input" name="message" rows="5" cols="30" data-touched="false" data-valid="false"></textarea>
+					<label for="message" class="form-label">Message : <span class="input-error"></span></label>
 				</div>
 
 				<div class="recaptcha" data-netlify-recaptcha="true"></div>
 
-				<input class="submit" type="submit" value="Submit">
-				
+				<!-- <input class="submit" type="submit" value="Submit"> -->
+				<span class="form-error">Error Text Here</span>
+				<button class="submit" type="submit">Submit</button>
+
 			</form>
 		</section>
 	</main>
