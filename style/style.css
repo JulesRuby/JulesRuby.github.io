@@ -991,6 +991,8 @@ body.open {
 .form-error {
 	display: flex;
 	justify-content: center;
+	height: 0;
+	line-height: 1;
 }
 
 .input-error.active {
@@ -1089,6 +1091,7 @@ body.open {
 .contact-form.invalid .form-error{
 	visibility: visible;
 	opacity: 1;
+	height: unset;
 	max-width: 100%;
 	transform: translateX(0%);
 }
