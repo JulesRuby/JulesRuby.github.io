@@ -1063,7 +1063,7 @@ body.open {
 		transform 200ms ease 50ms, max-width 200ms ease-in-out 10ms;
 }
 
-.field-error {
+.field-error::first-letter {
 	text-transform: capitalize;
 }
 
