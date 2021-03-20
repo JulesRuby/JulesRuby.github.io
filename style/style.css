@@ -1067,10 +1067,10 @@ body.open {
 	text-transform: uppercase;
 }
 
-.field-error::before {
+/* .field-error::before {
 	content: '\27A3';
 	margin-right: 0.25rem;
-}
+} */
 
 .field-error {
 }
