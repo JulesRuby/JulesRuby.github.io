@@ -1019,7 +1019,7 @@ body.open {
 	transition: inherit;
 }
 
-.input-error,
+/* .input-error, */
 .form-error {
 	overflow: hidden;
 	display: inline-flex;
@@ -1037,6 +1037,44 @@ body.open {
 		transform 200ms ease 50ms, max-width 200ms ease-in-out 10ms;
 }
 
+.field-errors {
+	overflow: hidden;
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+
+	display: inline-flex;
+	flex-direction: column;
+
+	padding: var(--s2);
+
+	top: 0;
+	right: var(--s2);
+
+	max-width: 0;
+
+	font-size: 0.65rem;
+	color: var(--kinetic);
+	background-color: var(--kinetic30);
+
+	z-index: 50;
+
+	transition: visibility 0ms linear 0ms, opacity 200ms ease 50ms,
+		transform 200ms ease 50ms, max-width 200ms ease-in-out 10ms;
+}
+
+.field-error {
+	text-transform: capitalize;
+}
+
+.field-error::before {
+	content: '\27A3';
+	margin-right: 0.25rem;
+}
+
+.field-error {
+}
+
 .form-error {
 	display: flex;
 	justify-content: center;
@@ -1044,7 +1082,15 @@ body.open {
 	/* line-height: 1; */
 }
 
-.input-error.active {
+/* .input-error.active {
+	visibility: visible;
+	opacity: 1;
+	max-width: 100%;
+
+	transform: translateX(0%);
+} */
+
+.field-errors.active {
 	visibility: visible;
 	opacity: 1;
 	max-width: 100%;

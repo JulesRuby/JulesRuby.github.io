@@ -25,7 +25,6 @@ const sections = $$(['.header', '.section']);
 // Store form element
 const contactForm = $('#contact-form');
 
-
 //
 let fieldsArray;
 const fieldNodes = $$('.form-control');
@@ -35,9 +34,9 @@ fieldsArray = [...fieldNodes].map(node => ({
 	name: node.children[0].name,
 	value: node.children[0].value.trim(),
 	label: node.children[1],
-	errorEl: node.children[0].labels[0].querySelector('.input-error'),
+	// errorEl: node.children[0].labels[0].querySelector('.input-error'),
+	errorUl: node.children[2],
 	errors: [],
-	// children: node.children,
 }));
 
 console.log(fieldsArray);
@@ -63,43 +62,65 @@ const setTouched = input => (input.dataset.touched = 'true');
 
 // Function to set invalid field
 const setError = field => {
+	let oldErrorItems = [...field.errorUl.children];
+	oldErrorItems.forEach(item => field.errorUl.removeChild(item));
+
+	let oldErrors =
+		[...field.errorUl.children].map(child => child.textContent) || [];
+	console.log('OLD ERR', oldErrors);
+
+	// Come back to this, maybe a neat way to do it?
+	// let filteredErrors;
+
+	// if (oldErrors.length > 0) {
+	// 	console.log('farts');
+	// 	filteredErrors = field.errors.filter(err =>
+	// 		oldErrors.every(oldErr => !err.match(oldErr))
+	// 	);
+	// 	field.errors = filteredErrors;
+	// }
+
+	// let filteredErrors = field.errors.filter(err =>
+	// 	oldErrors.every(oldErr => !err.match(oldErr))
+	// );
+
+	// field.errors = filteredErrors;
+
+	// console.log('FILTERED', filteredErrors);
+
+	// Create document fragment to append error elements to
+	let errorFragment = new DocumentFragment();
+	field.errors.forEach(err => {
+		let errorItem = document.createElement('li');
+		errorItem.setAttribute('class', 'field-error');
+		errorItem.textContent = err;
+		errorFragment.appendChild(errorItem);
+	});
+
 	// data-valid="" will be used for onSubmit validation/restriction
 	field.input.dataset.valid = false;
-	field.errorEl.innerText = field.errors;
-	field.errorEl.classList.add('active');
+	field.errorUl.appendChild(errorFragment); // Append fragment to errorUl, fragment is replaced by it's children
+	// field.errorEl.classList.add('active');
+	field.errorUl.classList.add('active');
 };
 
 // Function to set valid field
 const setSuccess = field => {
+	// Is this more performant than my logic above that relies on variable assignment?
+	[...field.errorUl.children].forEach(child =>
+		field.errorUl.removeChild(child)
+	);
 	// data-valid="" will be used for onSubmit validation/restriction
 	field.input.dataset.valid = true;
-	field.errorEl.classList.remove('active');
+	// field.errorEl.classList.remove('active');
+	field.errorUl.classList.remove('active');
 };
-
-// Create object containing all elements attributes to be manipulated and used
-// function collectField(inputEl) {
-// 	const fieldObject = {
-// 		input: inputEl,
-// 		name: inputEl.name,
-// 		value: inputEl.value.trim(),
-// 		control: inputEl.parentElement,
-// 		label: inputEl.labels[0],
-// 		errorEl: inputEl.labels[0].querySelector('.input-error'),
-// 		errors: [], // errors from failed validation will be spread here
-// 	};
-
-// 	console.log(fieldObject);
-
-// 	// Return object to variable
-// 	return fieldObject;
-// }
 
 const validateMinMax = (field, min, max) => {
 	let length = field.input.value.length;
 	let errMsg = `${field.name} must be between ${min} and ${max} characters.`;
 	if (length < min || length > max) {
 		field.errors = [...field.errors, errMsg];
-		// console.trace(`name length errors::: ${field.errors}`);
 	}
 };
 
@@ -116,48 +137,8 @@ const validateEmail = field => {
 	}
 };
 
-// Validate inputs
-
-// const inputValidate = (field) => {
-// 	// console.log(event)
-// 	console.log(field)
-// 	setTouched(field.input);
-// 	// const field = collectField(e.target);
-
-// 	// Use switch function to choose which validation functions are invoked, based on the field name
-// 	// Built this wait to allow me to scale and test/add different functions to the process easily
-// 	switch (field.name) {
-// 		case 'name':
-// 			validateMinMax(field, 2, 30);
-// 			break;
-// 		case 'email':
-// 			validateMinMax(field, 6, 40);
-// 			validateEmail(field);
-// 			break;
-// 		case 'phone':
-// 			validateMinMax(field, 0, 15);
-// 			break;
-// 		case 'message':
-// 			validateMinMax(field, 30, 500);
-// 			break;
-// 	}
-
-// 	if (field.errors.length !== 0) {
-// 		console.log(field.errors.length !== 0);
-// 		setError(field);
-// 	} else {
-// 		console.log(field.errors.length === 0);
-// 		setSuccess(field);
-// 	}
-// };
-
-
-const fieldValidate = (field) => {
-	// console.log(event)
-	// console.trace(field)
-
+const fieldValidate = field => {
 	setTouched(field.input);
-	// const field = collectField(e.target);
 
 	// Use switch function to choose which validation functions are invoked, based on the field name
 	// Built this wait to allow me to scale and test/add different functions to the process easily
@@ -178,29 +159,20 @@ const fieldValidate = (field) => {
 	}
 
 	if (field.errors.length !== 0) {
-		console.log(field.errors.length !== 0);
 		setError(field);
 	} else {
-		console.log(field.errors.length === 0);
 		setSuccess(field);
 	}
 
+	// reset field errors
 	field.errors = [];
 };
 
 // Handling contact form submit
 const handleSubmit = e => {
-	e.preventDefault();
-	console.log('Testing Submit');
 	let touchedInputs = [];
 	let invalidInputs = [];
 	formInputs.forEach(input => {
-		// console.table([
-		// 	['Touched?', input.dataset.touched],
-		// 	['Valid?', input.dataset.valid],
-		// ]);
-		// console.log('Includes touched?', input.dataset.touched.includes(true));
-		// console.log('Includes valid?', input.dataset.valid.includes(true));
 		if (input.name !== 'last-name') {
 			console.log(input);
 			touchedInputs = [...touchedInputs, input.dataset.touched];
@@ -208,32 +180,33 @@ const handleSubmit = e => {
 		}
 	});
 
-	console.log(touchedInputs);
-	console.log(invalidInputs);
-
 	//WOW this is ugly, I need to work on this a bit, but the concept is there...
 
 	if (!touchedInputs.includes('true')) {
+		e.preventDefault();
 		contactForm.classList.add('invalid');
 		contactForm.querySelector('.form-error').innerText =
 			'You can not submit an empty form.';
 	}
 
 	if (!touchedInputs.includes('true') && !invalidInputs.includes('false')) {
+		e.preventDefault();
 		contactForm.classList.add('invalid');
 		contactForm.querySelector('.form-error').innerText =
 			'Quit being weird, how did you do that?';
 	}
 
 	if (touchedInputs.includes('true') && invalidInputs.includes('false')) {
+		e.preventDefault();
 		contactForm.classList.add('invalid');
 		contactForm.querySelector('.form-error').innerText =
 			'Make sure you fill out the required fields, please :)';
 	}
 
 	if (touchedInputs.includes('true') && !invalidInputs.includes('false')) {
-		contactForm.classList.add('invalid');
-		contactForm.querySelector('.form-error').innerText = 'Huzzah';
+		// contactForm.classList.add('invalid');
+		// contactForm.querySelector('.form-error').innerText = 'Huzzah';
+		return;
 	}
 };
 
@@ -253,15 +226,7 @@ const updateHistory = hash => {
 // 	fn.timeout = setTimeOut(fn(), time);
 // };
 
-const findThreshold = element => {
-	// console.log(element.id, (window.innerHeight / 2 / element.clientHeight));
-	// console.log(element.clientHeight);
-	// console.log(window.innerHeight);
-	// console.log(window.innerHeight / 2);
-	// console.log(window.innerHeight / 2 / element.clientHeight);
-	// debugger;
-	return window.innerHeight / 2 / element.clientHeight;
-};
+const findThreshold = element => window.innerHeight / 2 / element.clientHeight;
 
 const options = element => {
 	return {
@@ -273,19 +238,9 @@ const options = element => {
 // Create callback function for Intersection Observer
 const intersectCallback = entries => {
 	entries.forEach(entry => {
-		console.log(
-			// entry.target,
-			// entry.target.clientHeight,
-			entry.target.id,
-			entry.isIntersecting,
-			entry.intersectionRatio
-		);
-		// debugger;
 		const urlHash = `#${entry.target.id}`;
 		const ratio = findThreshold(entry.target);
-		console.log(ratio);
 		const menuAnchor = $(`a[href="${urlHash}"]`);
-		console.log(menuAnchor);
 
 		if (entry.isIntersecting && entry.intersectionRatio > ratio) {
 			menuAnchor.classList.add('active');
@@ -369,11 +324,8 @@ toggleMobileListeners();
 
 // Set initial listeners
 contactForm.addEventListener('submit', handleSubmit);
-// formInputs.forEach(input => input.addEventListener('blur', inputValidate));
-fieldsArray.forEach(field => field.input.addEventListener('blur', () => fieldValidate(field)));
-// controlGroups.forEach(group =>
-// 	group.input.addEventListener('blur', inputValidate)
-// );
-// formControls.children.forEach(input => input.addEventListener('blur', inputValidate));
+fieldsArray.forEach(field =>
+	field.input.addEventListener('blur', () => fieldValidate(field))
+);
 window.addEventListener('resize', toggleMobileListeners);
 hamburger.addEventListener('click', toggleMenu);
