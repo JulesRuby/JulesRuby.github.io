@@ -1064,7 +1064,7 @@ body.open {
 }
 
 .field-error::first-letter {
-	text-transform: capitalize;
+	text-transform: uppercase;
 }
 
 .field-error::before {
