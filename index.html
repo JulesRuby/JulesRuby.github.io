@@ -18,8 +18,22 @@
 	<header id="home" class="header">
 		<nav class="navigation scanlines">
 			<a href="#home" class="logo hover">
-				JRMURI.DEV
-				<img src="" alt="" class="logo-link">
+				<svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 327.69 168.25">
+					<defs>
+						<filter id="drop-shadow" filterUnits="userSpaceOnUse" >
+							<feGaussianBlur result="softGlow" in="SourceGraphic" stdDeviation="4" />
+							<feBlend in="SourceGraphic" in2="softGlow" mode="normal" />
+							<feMerge result="mergeGlow">
+								<feMergeNode in="softGlow" />
+								<feMergeNode in="SourceGraphic" />
+							</feMerge>
+						</filter>
+					</defs>
+					<g id="Layer_2" data-name="Layer 2">
+						<path class="cls-1 r" d="M168.49,168.25V15.92L196.06,0,327.69,76.36,300.68,92,195.59,31.35l-.07,121.31Z" />
+						<path class="cls-1 j" d="M27,76.31l105.1,60.6.07-121.32L159.49,0V152.17l-27.57,15.92L0,91.9Z" />
+					</g>
+				</svg>
 			</a>
 
 			<ul class="menu-list frosted-glass">

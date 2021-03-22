@@ -197,7 +197,7 @@ input:active {
 	visibility: visible;
 	justify-content: space-between;
 	align-items: center;
-	padding: var(--s4);
+	padding: 0 var(--s4);
 
 	width: 100%;
 	height: var(--nav-ht-mobile);
@@ -267,6 +267,27 @@ body.open {
 	justify-content: center;
 	align-items: center;
 	margin-top: var(--s7);
+}
+
+.logo {
+	display: inline-flex;
+	padding: var(--s3) 0;
+	height: var(--nav-ht-mobile);
+	max-width: 5rem;
+}
+
+.logo-svg {
+	overflow: visible;
+	fill: var(--aether);
+}
+
+.cls-1 {
+	filter: url(#drop-shadow);
+	transition: fill 200ms ease-in-out;
+}
+
+.logo-svg:hover .r {
+	fill: var(--kinetic);
 }
 
 .menu-anchor {
@@ -1057,6 +1078,8 @@ body.open {
 	color: var(--kinetic);
 	background-color: var(--kinetic30);
 
+	border-radius: 0.1rem;
+
 	z-index: 50;
 
 	transition: visibility 0ms linear 0ms, opacity 200ms ease 50ms,
@@ -1277,8 +1300,9 @@ body.open {
 	/* 9.3 QUERY - NAVIGATION */
 	.navigation {
 		flex-direction: column;
-		padding-left: 0;
-		padding-right: 0;
+		padding: var(--s4) 0;
+		/* padding-left: 0;
+		padding-right: 0; */
 
 		width: 9rem;
 		height: 100%;
@@ -1310,6 +1334,10 @@ body.open {
 	.social-list.frosted-glass {
 		-webkit-backdrop-filter: blur(0px);
 		backdrop-filter: blur(0px);
+	}
+
+	.logo {
+		padding: 0;
 	}
 
 	.menu-anchor {
