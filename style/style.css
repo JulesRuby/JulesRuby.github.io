@@ -271,9 +271,10 @@ body.open {
 
 .logo {
 	display: inline-flex;
-	flex-grow: 1;
 	padding: var(--s3) 0;
+
 	height: var(--nav-ht-mobile);
+	width: 100%;
 	max-width: 5rem;
 }
 
