@@ -50,6 +50,12 @@ const menuLinks = $$('.menu-anchor');
 
 // toggle the open class for the mobile menu
 const toggleMenu = () => {
+	let expanded = hamburger.getAttribute('aria-expanded');
+	console.log(expanded)
+	let set = (expanded === 'false' ? 'true' : 'false');
+	console.log(set);
+	hamburger.setAttribute('aria-expanded', set);
+
 	[hamburger, menu, socialMenu, body].forEach(el =>
 		el.classList.toggle('open')
 	);
@@ -69,25 +75,6 @@ const setError = field => {
 		[...field.errorUl.children].map(child => child.textContent) || [];
 	console.log('OLD ERR', oldErrors);
 
-	// Come back to this, maybe a neat way to do it?
-	// let filteredErrors;
-
-	// if (oldErrors.length > 0) {
-	// 	console.log('farts');
-	// 	filteredErrors = field.errors.filter(err =>
-	// 		oldErrors.every(oldErr => !err.match(oldErr))
-	// 	);
-	// 	field.errors = filteredErrors;
-	// }
-
-	// let filteredErrors = field.errors.filter(err =>
-	// 	oldErrors.every(oldErr => !err.match(oldErr))
-	// );
-
-	// field.errors = filteredErrors;
-
-	// console.log('FILTERED', filteredErrors);
-
 	// Create document fragment to append error elements to
 	let errorFragment = new DocumentFragment();
 	field.errors.forEach(err => {
@@ -100,7 +87,6 @@ const setError = field => {
 	// data-valid="" will be used for onSubmit validation/restriction
 	field.input.dataset.valid = false;
 	field.errorUl.appendChild(errorFragment); // Append fragment to errorUl, fragment is replaced by it's children
-	// field.errorEl.classList.add('active');
 	field.errorUl.classList.add('active');
 };
 
@@ -112,7 +98,6 @@ const setSuccess = field => {
 	);
 	// data-valid="" will be used for onSubmit validation/restriction
 	field.input.dataset.valid = true;
-	// field.errorEl.classList.remove('active');
 	field.errorUl.classList.remove('active');
 };
 
@@ -283,6 +268,7 @@ const toggleMobileListeners = () => {
 	} else {
 		window.removeEventListener('scroll', scrollHide);
 		topNav.classList.remove('scroll-hide');
+		hamburger.setAttribute('aria-expanded', 'false');
 		[hamburger, menu, socialMenu, body].forEach(el =>
 			el.classList.remove('open')
 		);
