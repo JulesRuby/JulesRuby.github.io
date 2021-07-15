@@ -51,8 +51,8 @@ const menuLinks = $$('.menu-anchor');
 // toggle the open class for the mobile menu
 const toggleMenu = () => {
 	let expanded = hamburger.getAttribute('aria-expanded');
-	console.log(expanded)
-	let set = (expanded === 'false' ? 'true' : 'false');
+	console.log(expanded);
+	let set = expanded === 'false' ? 'true' : 'false';
 	console.log(set);
 	hamburger.setAttribute('aria-expanded', set);
 
@@ -68,6 +68,7 @@ const setTouched = input => (input.dataset.touched = 'true');
 
 // Function to set invalid field
 const setError = field => {
+	// debugger;
 	let oldErrorItems = [...field.errorUl.children];
 	oldErrorItems.forEach(item => field.errorUl.removeChild(item));
 
@@ -88,6 +89,11 @@ const setError = field => {
 	field.input.dataset.valid = false;
 	field.errorUl.appendChild(errorFragment); // Append fragment to errorUl, fragment is replaced by it's children
 	field.errorUl.classList.add('active');
+
+	if (!field.input.getAttribute('validate-keyup-listener')) {
+		field.input.setAttribute('validate-keyup-listener', 'true');
+		field.input.addEventListener('keyup', () => fieldValidate(field));
+	}
 };
 
 // Function to set valid field
@@ -99,6 +105,12 @@ const setSuccess = field => {
 	// data-valid="" will be used for onSubmit validation/restriction
 	field.input.dataset.valid = true;
 	field.errorUl.classList.remove('active');
+
+	if (!!field.input.getAttribute('validate-keyup-listener')) {
+		field.input.removeAttribute('validate-keyup-listener');
+	}
+	
+	field.input.removeEventListener('keyup', () => fieldValidate(field));
 };
 
 const validateMinMax = (field, min, max) => {
@@ -149,7 +161,7 @@ const fieldValidate = field => {
 		setSuccess(field);
 	}
 
-	// reset field errors
+	// reset field errors array
 	field.errors = [];
 };
 
