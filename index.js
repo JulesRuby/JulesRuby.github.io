@@ -39,7 +39,6 @@ fieldsArray = [...fieldNodes].map(node => ({
 	errors: [],
 }));
 
-console.log(fieldsArray);
 // Store form inputs for touched status
 const formControls = $$('.form-control');
 
@@ -51,9 +50,7 @@ const menuLinks = $$('.menu-anchor');
 // toggle the open class for the mobile menu
 const toggleMenu = () => {
 	let expanded = hamburger.getAttribute('aria-expanded');
-	console.log(expanded);
 	let set = expanded === 'false' ? 'true' : 'false';
-	console.log(set);
 	hamburger.setAttribute('aria-expanded', set);
 
 	[hamburger, menu, socialMenu, body].forEach(el =>
@@ -68,13 +65,13 @@ const setTouched = input => (input.dataset.touched = 'true');
 
 // Function to set invalid field
 const setError = field => {
-	// debugger;
 	let oldErrorItems = [...field.errorUl.children];
 	oldErrorItems.forEach(item => field.errorUl.removeChild(item));
 
-	let oldErrors =
-		[...field.errorUl.children].map(child => child.textContent) || [];
-	console.log('OLD ERR', oldErrors);
+	// Don't really want this at the moment, but might come back to it
+	// let oldErrors =
+	// 	[...field.errorUl.children].map(child => child.textContent) || [];
+	// console.log('OLD ERR', oldErrors);
 
 	// Create document fragment to append error elements to
 	let errorFragment = new DocumentFragment();
@@ -90,9 +87,9 @@ const setError = field => {
 	field.errorUl.appendChild(errorFragment); // Append fragment to errorUl, fragment is replaced by it's children
 	field.errorUl.classList.add('active');
 
-	if (!field.input.getAttribute('validate-keyup-listener')) {
-		field.input.setAttribute('validate-keyup-listener', 'true');
-		field.input.addEventListener('keyup', () => fieldValidate(field));
+	if (!field.input.getAttribute('validate-input-listener')) {
+		field.input.setAttribute('validate-input-listener', 'true');
+		field.input.addEventListener('input', () => fieldValidate(field));
 	}
 };
 
@@ -106,11 +103,11 @@ const setSuccess = field => {
 	field.input.dataset.valid = true;
 	field.errorUl.classList.remove('active');
 
-	if (!!field.input.getAttribute('validate-keyup-listener')) {
-		field.input.removeAttribute('validate-keyup-listener');
+	if (!!field.input.getAttribute('validate-input-listener')) {
+		field.input.removeAttribute('validate-input-listener');
 	}
-	
-	field.input.removeEventListener('keyup', () => fieldValidate(field));
+
+	field.input.removeEventListener('input', () => fieldValidate(field));
 };
 
 const validateMinMax = (field, min, max) => {
@@ -171,7 +168,6 @@ const handleSubmit = e => {
 	let invalidInputs = [];
 	formInputs.forEach(input => {
 		if (input.name !== 'last-name') {
-			console.log(input);
 			touchedInputs = [...touchedInputs, input.dataset.touched];
 			invalidInputs = [...invalidInputs, input.dataset.valid];
 		}
@@ -241,7 +237,6 @@ const intersectCallback = entries => {
 
 		if (entry.isIntersecting && entry.intersectionRatio > ratio) {
 			menuAnchor.classList.add('active');
-			console.log('BOOSH:', menuAnchor);
 			updateHistory(urlHash);
 		} else {
 			menuAnchor.classList.remove('active');
