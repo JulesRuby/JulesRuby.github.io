@@ -448,7 +448,7 @@ body.open {
 
 .social-item {
 	overflow: hidden;
-	/* display: inline-flex; */
+	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 
@@ -462,10 +462,13 @@ body.open {
 	justify-content: inherit;
 	align-items: inherit;
 
-	padding: var(--s2);
-	height: 100%;
+	/* padding: var(--s2); */
+	/* height: 100%; */
+	vertical-align: middle;
+	width: 2rem;
+	height: 2rem;
 
-	font-size: 1rem;
+	font-size: 1.25rem;
 	line-height: 1;
 
 	transition: all 200ms ease;
@@ -687,7 +690,8 @@ body.open {
 	transition: text-shadow 200ms ease;
 }
 
-.proof-link > i {
+.proof-link > i,
+.proof-link > [class^="icon-"] {
 	display: inherit;
 	justify-content: inherit;
 	align-items: inherit;
@@ -1580,7 +1584,6 @@ body.open {
 		margin-left: 9rem;
 		/* padding-left: 10rem; */
 		padding-right: 1rem;
-
 	}
 }
 
